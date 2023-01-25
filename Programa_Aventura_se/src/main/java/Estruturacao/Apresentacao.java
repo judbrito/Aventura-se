@@ -1,6 +1,7 @@
 package Estruturacao;
 
 import java.time.Duration;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -23,7 +24,7 @@ public class Apresentacao {
 	public void abrir() {
 
 		driver = new ChromeDriver();
-		driver.manage().window().maximize();
+	//	driver.manage().window().maximize();
 
 		driver.get("https://www.amazon.com.br/");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -33,7 +34,7 @@ public class Apresentacao {
 	@After
 	public void fechar() {
 
-		// driver.quit();
+	//	driver.quit();
 	}
 
 	@Test
@@ -164,29 +165,30 @@ public class Apresentacao {
 
 	}
 
-	@SuppressWarnings({ "unused" })
+
 	@Test
 	@Ignore
 	// 8888888888888
 	public void addQtdItens() {
 
 		addCarrinho();
-
+		System.out.println("Valor do item unitário "+driver.findElement(By.xpath("//span[@id='sc-subtotal-amount-buybox']/span")).getText());
+		
 		WebElement element = driver.findElement(By.xpath("//*[@id='quantity']"));
 		Select itens = new Select(element);
 		itens.selectByValue("2");
+
 
 		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 500);");
 
 		WebElement ver = driver.findElement(By.xpath("//span[@id='sc-subtotal-amount-buybox']/span"));
 		String mostra = ver.getText();
 
-		Assert.assertEquals("Subtotal (2 itens):",
-				driver.findElement(By.xpath("//*[@id='sc-subtotal-label-activecart']")).getText());
+	
 
 		Assert.assertEquals(mostra,
 				driver.findElement(By.xpath("//span[@id='sc-subtotal-amount-buybox']/span")).getText());
-		System.out.println("Valores dos itens" + mostra);
+		System.out.println("Valores dos itens dobrado " + mostra);
 
 	}
 
@@ -261,15 +263,15 @@ public class Apresentacao {
 	// 13 13 13
 	public void PesquisaTecnologia() {
 
+		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 700);");
 		driver.findElement(By.className("hm-icon-label")).click();
 
-		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 500);");
 
 		WebElement vertudo = driver.findElement(By.xpath("//*[contains(text(),'ver tudo')]"));
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click()", vertudo);
-		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 500);");
+		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 700);");
 
 		WebElement pc = driver
 				.findElement(By.xpath("//*[@class='hmenu-item']//*[contains(text(),'Computadores e Informática')]"));
@@ -286,11 +288,47 @@ public class Apresentacao {
 	@Ignore
 	// 14 14 14
 	public void PesquisaTecAlvo() {
-
+		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 700);");
+	
 		PesquisaTecnologia();
+		
 
-		driver.findElement(By.xpath("//*[contains(text(),'Marca')]/../..//i")).click();
-
+		WebElement clica = driver.findElement(By.xpath("//*[contains(text(),'Marca')]/../..//i"));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].click()", clica);
+		
+		
+		
+		
+		 driver.findElement(By.xpath("//*[contains(text(),'Marca')]/../..//i"));
+		
+		
+		Assert.assertFalse( driver.findElement(By.xpath("//*[contains(text(),'Marca')]/../..//i")).isSelected());
 	}
+	
+
+	@SuppressWarnings("null")
+	@Test
+	//@Ignore
+	// 15 15 15 
+	public void organizar() {
+		
+		driver.get("https://www.amazon.com.br/s?bbn=16364755011&rh=n%3A16364755011%2Cp_89%3ALenovo&dc&qid=1674655776&rnid=18120432011&ref=lp_16364755011_nr_p_89_0");
+		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 2000);");
+		//WebElement element = driver.findElement(By.xpath("//*[@class='a-dropdown-link']/..//*[contains(text(),'Preço: alto')]"));
+		WebElement element = driver.findElement(By.id("s-result-sort-select"));
+		
+		Select itens = new Select(element);
+		itens.selectByVisibleText("Preço: alto a baixo");
+		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 2000);");
+		
+	
+		Select algumaOpcao = itens; 
+		
+		Assert.assertEquals(1,algumaOpcao.getAllSelectedOptions());
+
+		
+	}
+
 	
 }
