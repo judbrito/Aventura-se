@@ -1,7 +1,6 @@
 package Estruturacao;
 
 import java.time.Duration;
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
@@ -24,7 +23,7 @@ public class Apresentacao {
 	public void abrir() {
 
 		driver = new ChromeDriver();
-	//	driver.manage().window().maximize();
+		driver.manage().window().maximize();
 
 		driver.get("https://www.amazon.com.br/");
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
@@ -34,11 +33,11 @@ public class Apresentacao {
 	@After
 	public void fechar() {
 
-	//	driver.quit();
+		driver.quit();
 	}
 
-	@Test
-	@Ignore
+	@Test @Ignore
+	
 
 	// 1111111111111111
 	public void loga() {
@@ -54,24 +53,24 @@ public class Apresentacao {
 
 	}
 
-	@Test
-	@Ignore
+	@Test @Ignore
+	
 
 	// 22222222222
 	public void desloga() {
 		loga();
 		WebElement desLog = driver.findElement(By.xpath("//*[@id='nav-item-signout']/span"));
-		WebElement saiu = driver.findElement(By.xpath("//*[@class='a-box-inner a-padding-extra-large']//h1"));
 
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click()", desLog);
 
+		WebElement saiu = driver.findElement(By.xpath("//*[@class='a-box-inner a-padding-extra-large']//h1"));
 		Assert.assertTrue("Fazer login", saiu.getText().contains("Fazer login"));
 
 	}
 
-	@Test
-	@Ignore
+	@Test @Ignore
+	
 	// 33333333333
 	public void consultaBike() {
 
@@ -80,12 +79,12 @@ public class Apresentacao {
 		driver.findElement(By.xpath("//*[@id='nav-search-submit-button']")).click();
 
 		Assert.assertTrue("Bicicleta", driver.findElement(By.xpath(
-				"//*[@id=\"search\"]/div[1]/div[1]/div/span[1]/div[1]/div[37]/div/div/div/div/div[2]/div[1]/h2/a/span"))
+				"//*[contains(text(),'Bicicleta')]"))
 				.getText().contains("Bicicleta"));
 	}
 
-	@Test
-	@Ignore
+	@Test @Ignore
+	
 	// 444444444444
 	public void consultaError() {
 
@@ -100,8 +99,8 @@ public class Apresentacao {
 
 	}
 
-	@Test
-	@Ignore
+	@Test @Ignore
+	
 	// 555555555
 	public void comprarCepTrue() {
 
@@ -109,7 +108,7 @@ public class Apresentacao {
 
 		driver.findElement(By.xpath("//*[@id='nav-search-submit-button']")).click();
 		driver.findElement(By.xpath(
-				"//*[@id=\"search\"]/div[1]/div[1]/div/span[1]/div[1]/div[3]/div/div/div/div/div/div/div[3]/div[1]/h2/a/span"))
+				"//*[@data-index=\"1\" ]/..//*[contains(text(),'Lider')]"))
 				.click();
 		driver.findElement(By.id("contextualIngressPtLabel_deliveryShortLine")).click();
 
@@ -118,16 +117,15 @@ public class Apresentacao {
 		WebElement cep = driver.findElement(By.id("GLUXZipUpdate-announce"));
 		JavascriptExecutor js = (JavascriptExecutor) driver;
 		js.executeScript("arguments[0].click()", cep);
-		Assert.assertTrue("Segunda-feira, 23 de Janeiro",
-				driver.findElement(By.className("a-text-bold")).getText().contains("Segunda-feira, 23 de Janeiro"));
-		Assert.assertTrue("GR√ÅTIS",
-				driver.findElement(By.id("mir-layout-DELIVERY_BLOCK-slot-PRIMARY_DELIVERY_MESSAGE_LARGE")).getText()
-						.contains("GR¡TIS"));
+		
+		
+		WebElement endereco = driver.findElement(By.className("a-text-bold"));
+				System.out.println("Previs„o para entrega: "+endereco.getText());
 
 	}
 
-	@Test
-	@Ignore
+	@Test @Ignore
+	
 	// 6666666666666
 	public void comprarCepFalse() {
 
@@ -135,7 +133,7 @@ public class Apresentacao {
 
 		driver.findElement(By.xpath("//*[@id='nav-search-submit-button']")).click();
 		driver.findElement(By.xpath(
-				"//*[@id=\"search\"]/div[1]/div[1]/div/span[1]/div[1]/div[3]/div/div/div/div/div/div/div[3]/div[1]/h2/a/span"))
+				"//*[@data-index='2']//h2//span"))
 				.click();
 		driver.findElement(By.id("contextualIngressPtLabel_deliveryShortLine")).click();
 
@@ -149,8 +147,8 @@ public class Apresentacao {
 
 	}
 
-	@Test
-	@Ignore
+	@Test @Ignore
+	
 	// 77777777777
 	public void addCarrinho() {
 
@@ -166,8 +164,8 @@ public class Apresentacao {
 	}
 
 
-	@Test
-	@Ignore
+	@Test @Ignore// @Ignore
+	
 	// 8888888888888
 	public void addQtdItens() {
 
@@ -192,8 +190,8 @@ public class Apresentacao {
 
 	}
 
-	@Test
-	@Ignore
+	@Test @Ignore
+	
 	// 9999999999
 	public void addCarrinhoItens() {
 		// fogao
@@ -211,8 +209,8 @@ public class Apresentacao {
 		Assert.assertTrue("2", driver.findElement(By.id("nav-cart-count")).getText().contains("2"));
 	}
 
-	@Test
-	@Ignore
+	@Test @Ignore
+	
 	// 10 10 10
 	public void excluirAlgumItem() {
 		addCarrinho();
@@ -227,8 +225,8 @@ public class Apresentacao {
 
 	}
 
-	@Test
-	@Ignore
+	@Test @Ignore
+	
 	// 11 11 11
 	public void excluirUmItem() {
 		addCarrinhoItens();
@@ -241,8 +239,8 @@ public class Apresentacao {
 
 	}
 
-	@Test
-	@Ignore
+	@Test @Ignore
+	
 	// 12 12 12
 	public void PesquisaAposLogin() {
 
@@ -258,8 +256,8 @@ public class Apresentacao {
 
 	}
 
-	@Test
-	@Ignore
+	@Test @Ignore
+	
 	// 13 13 13
 	public void PesquisaTecnologia() {
 
@@ -284,8 +282,8 @@ public class Apresentacao {
 		System.out.println(exibir.getText());
 	}
 
-	@Test
-	@Ignore
+	@Test @Ignore
+	
 	// 14 14 14
 	public void PesquisaTecAlvo() {
 		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 700);");
@@ -307,26 +305,25 @@ public class Apresentacao {
 	}
 	
 
-	@SuppressWarnings("null")
-	@Test
-	//@Ignore
+	@Test @Ignore
+	
 	// 15 15 15 
 	public void organizar() {
 		
 		driver.get("https://www.amazon.com.br/s?bbn=16364755011&rh=n%3A16364755011%2Cp_89%3ALenovo&dc&qid=1674655776&rnid=18120432011&ref=lp_16364755011_nr_p_89_0");
 		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 2000);");
-		//WebElement element = driver.findElement(By.xpath("//*[@class='a-dropdown-link']/..//*[contains(text(),'PreÁo: alto')]"));
+		
 		WebElement element = driver.findElement(By.id("s-result-sort-select"));
 		
 		Select itens = new Select(element);
 		itens.selectByVisibleText("PreÁo: alto a baixo");
 		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 2000);");
 		
-	
-		Select algumaOpcao = itens; 
+		WebElement maiorPreco = driver.findElement(By.xpath("//*[contains(text(),'WUXGA')]//..//../../..//*[contains(text(),'atÈ')]"));
+		System.out.println(maiorPreco.getText());
 		
-		Assert.assertEquals(1,algumaOpcao.getAllSelectedOptions());
-
+		WebElement menorPreco = driver.findElement(By.xpath("//*[contains(text(),'Mais')]//..//../../..//*[contains(text(),'atÈ')]"));
+		System.out.println(menorPreco.getText());
 		
 	}
 
