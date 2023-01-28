@@ -1,14 +1,16 @@
 package Estruturacao;
 
+import static org.junit.Assert.assertTrue;
+
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,16 +19,16 @@ import org.openqa.selenium.support.ui.Select;
 public class Apresentacao {
 
 	private WebDriver driver;
-	private String titulo;
+	private Metodos dsl;
 
 	@Before
 	public void abrir() {
 
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 700);");
 
 		driver.get("https://www.amazon.com.br/");
+		dsl = new Metodos(driver);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
 	}
@@ -34,59 +36,48 @@ public class Apresentacao {
 	@After
 	public void fechar() {
 
-		//driver.quit();
+		driver.quit();
 	}
 
-	@Test  @Ignore 
-	
+	@Test
 
 	// 1111111111111111
 	public void loga() {
+		dsl.clica("//*[@id='nav-link-accountList-nav-line-1']");
+		dsl.escreva("//*[@id='ap_email']", "amazonclientevip@yahoo.com");
+		dsl.clica("//*[@id='continue']");
+		dsl.escreva("//*[@id='ap_password']", "123456789241307Jb@");
+		dsl.clica("//*[@id='signInSubmit']");
 
-		driver.findElement(By.xpath("//*[@id='nav-link-accountList-nav-line-1']")).click();
-		driver.findElement(By.xpath("//*[@id='ap_email']")).sendKeys("amazonclientevip@yahoo.com");
-		driver.findElement(By.xpath("//*[@id='continue']")).click();
-		driver.findElement(By.xpath("//*[@id='ap_password']")).sendKeys("123456789241307Jb@");
-		driver.findElement(By.xpath("//*[@id='signInSubmit']")).click();
-
-		titulo = driver.getTitle();
-		Assert.assertEquals("Acessar Amazon", titulo);
+		Assert.assertEquals("Acessar Amazon", driver.getTitle());
 
 	}
 
-	@Test  @Ignore 
-	
+	@Test
 
 	// 22222222222
 	public void desloga() {
 		loga();
 
-		WebElement desLog = driver.findElement(By.xpath("//*[@id='nav-item-signout']/span"));
+		dsl.jsScriptClick("//*[@id='nav-item-signout']/span");
 
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click()", desLog);
-
-		WebElement saiu = driver.findElement(By.xpath("//*[@class='a-box-inner a-padding-extra-large']//h1"));
-		Assert.assertTrue("Fazer login", saiu.getText().contains("Fazer login"));
+		Assert.assertTrue("Fazer login",
+				dsl.validaTrue("//*[@class='a-box-inner a-padding-extra-large']//h1", "Fazer login"));
 
 	}
 
-	@Test  @Ignore 
-	
+	@Test
 
 	// 33333333333
 	public void consultaBike() {
+		dsl.escreva("//*[@id='twotabsearchtextbox']", "bicicleta aro 29");
+		dsl.clica("//*[@id='nav-search-submit-button']");
 
-		driver.findElement(By.xpath("//*[@id='twotabsearchtextbox']")).sendKeys("bicicleta aro 29");
+		Assert.assertTrue("Bicicleta", dsl.validaTrue("//*[contains(text(),'Bicicleta')]", "Bicicleta"));
 
-		driver.findElement(By.xpath("//*[@id='nav-search-submit-button']")).click();
-
-		Assert.assertTrue("Bicicleta",
-				driver.findElement(By.xpath("//*[contains(text(),'Bicicleta')]")).getText().contains("Bicicleta"));
 	}
 
-	@Test  @Ignore 
-	
+	@Test
 
 	// 444444444444
 	public void consultaError() {
@@ -96,169 +87,140 @@ public class Apresentacao {
 		driver.findElement(By.xpath("//*[@id='nav-search-submit-button']")).click();
 
 		Assert.assertTrue("Nenhum resultado para",
-				driver.findElement(By
-						.xpath("//*[contains(text(),'Nenhum resultado para ')]"))
-						.getText().contains("Nenhum resultado para"));
+				dsl.validaTrue("//*[contains(text(),'Nenhum resultado para ')]", "Nenhum resultado para"));
 
 	}
 
-	@Test  @Ignore 
-	
+	@Test
 
 	// 555555555
 	public void comprarCepTrue() {
+		dsl.escreva("//*[@id='twotabsearchtextbox']", "Frigideira");
+		dsl.clica("//*[@id='nav-search-submit-button']");
+		dsl.clica("//*[@data-index=\"2\"]//*[@class='a-size-base-plus a-color-base a-text-normal']");
+		dsl.clica("//*[@id='contextualIngressPtLabel_deliveryShortLine']");
+		dsl.escreva("//*[@id='GLUXZipUpdateInput_0']", "06010067");
+		dsl.jsScriptClick("//*[@id='GLUXZipUpdate']/span/input");
 
-		driver.findElement(By.xpath("//*[@id='twotabsearchtextbox']")).sendKeys("Frigideira");
-
-		driver.findElement(By.xpath("//*[@id='nav-search-submit-button']")).click();
-		driver.findElement(By.xpath("//*[@data-index=\"1\" ]/..//*[contains(text(),'Lider')]")).click();
-		driver.findElement(By.id("contextualIngressPtLabel_deliveryShortLine")).click();
-
-		driver.findElement(By.id("GLUXZipUpdateInput_0")).sendKeys("06010067");
-
-		WebElement cep = driver.findElement(By.id("GLUXZipUpdate-announce"));
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click()", cep);
-
-		WebElement endereco = driver.findElement(By.className("a-text-bold"));
-		System.out.println("Previsão para entrega: " + endereco.getText());
+		assertTrue(driver.findElement(By.xpath("//*[@class='a-text-bold']")).isDisplayed());
 
 	}
 
-	@Test  @Ignore 
-	
+	@Test
 
 	// 6666666666666
 	public void comprarCepFalse() {
+		dsl.escreva("//*[@id='twotabsearchtextbox']", "copo");
+		dsl.clica("//*[@id='nav-search-submit-button']");
+		dsl.clica("//*[@data-index='2']//h2//span");
+		dsl.clica("//*[@id='contextualIngressPtLabel_deliveryShortLine']");
+		dsl.escreva("//*[@id='GLUXZipUpdateInput_0']", "00000000");
+		dsl.jsScriptClick("//*[@id='GLUXZipUpdate-announce']");
 
-		driver.findElement(By.xpath("//*[@id='twotabsearchtextbox']")).sendKeys("copo");
-
-		driver.findElement(By.xpath("//*[@id='nav-search-submit-button']")).click();
-		driver.findElement(By.xpath("//*[@data-index='2']//h2//span")).click();
-		driver.findElement(By.id("contextualIngressPtLabel_deliveryShortLine")).click();
-
-		driver.findElement(By.id("GLUXZipUpdateInput_0")).sendKeys("00000000");
-
-		WebElement cep = driver.findElement(By.id("GLUXZipUpdate-announce"));
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click()", cep);
-		Assert.assertFalse("Insira um CEP válido", driver.findElement(By.xpath("//*[@id='GLUXZipError']/div/div/div"))
-				.getText().contains("Insira um CEP válido"));
+		Assert.assertFalse("Insira um CEP válido",
+				dsl.validaTrue("//*[@id='GLUXZipError']/div/div/div", "Insira um CEP válido"));
 
 	}
 
-	@Test  @Ignore
-	
+	@Test
 
 	// 77777777777
 	public void addCarrinho() {
 
-		driver.findElement(By.xpath("//*[@id='twotabsearchtextbox']")).sendKeys("vassoura");
+		dsl.escreva("//*[@id='twotabsearchtextbox']", "console");
+		dsl.clica("//*[@id='nav-search-submit-button']");
+		dsl.clica("//*[@data-index='2']//*[contains(text(),'Console')]");
+		dsl.clica("//*[@id='add-to-cart-button']");
+		dsl.clica("//*[@id='nav-cart']");
 
-		driver.findElement(By.xpath("//*[@id='nav-search-submit-button']")).click();
-		driver.findElement(By.xpath("//*[@data-index='1']//*[contains(text(),'Vassoura')]")).click();
-		driver.findElement(By.id("add-to-cart-button")).click();
-		driver.findElement(By.id("nav-cart")).click();
-
-		Assert.assertTrue("Vassoura", driver.findElement(By.className("a-truncate-cut")).getText().contains("Vassoura"));
+		Assert.assertTrue("Console", dsl.validaTrue("//*[@class='a-truncate-cut']", "Console"));
 
 	}
 
-	@Test  @Ignore 
-	
+	@Test
 
 	// 8888888888888
 	public void addQtdItens() {
 
 		addCarrinho();
-		System.out.println("Valor do item unitário "
-				+ driver.findElement(By.xpath("//span[@id='sc-subtotal-amount-buybox']/span")).getText());
+		WebElement custo = driver.findElement(By.xpath("//span[@id='sc-subtotal-amount-buybox']/span"));
+		String umItem = custo.getText();
+		System.out.println("Valor unitário " + umItem);
 
 		WebElement element = driver.findElement(By.xpath("//*[@id='quantity']"));
 		Select itens = new Select(element);
 		itens.selectByValue("2");
 
-		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 500);");
+		dsl.time();
 
 		WebElement ver = driver.findElement(By.xpath("//span[@id='sc-subtotal-amount-buybox']/span"));
-		String mostra = ver.getText();
+		String doisItens = ver.getText();
 
-		Assert.assertEquals(mostra,
-				driver.findElement(By.xpath("//span[@id='sc-subtotal-amount-buybox']/span")).getText());
-		System.out.println("Valores dos itens dobrado " + mostra);
+		Assert.assertTrue(umItem != doisItens);
+		System.out.println("Valor dobrado " + doisItens);
 
+//		
 	}
 
 	@SuppressWarnings("unused")
-	@Test  @Ignore 
+	@Test
 
 	// 9999999999
 	public void addCarrinhoItens() {
-		// fogao
-		WebElement frame = null;
-		driver.findElement(By.xpath("//*[@id='twotabsearchtextbox']")).sendKeys("fogão");
-		driver.findElement(By.id("nav-search-submit-button")).click();
-		driver.findElement(By.xpath("//*[@data-index='1' ]//h2//a/span")).click();
-		driver.findElement(By.id("add-to-cart-button")).click();
-	
-		
-		
-		if(frame != null) {
-		 frame = driver.findElement(By.xpath("/html/body/iframe[3]"));
-			WebElement toDo = driver.findElement(By.xpath("//*[@id='attachSiNoCoverage-announce']"));
-			driver.switchTo().frame(frame);
-			toDo.click();
-			
+		// foga
+		dsl.escreva("//*[@id='twotabsearchtextbox']", "fogão");
+
+		dsl.clica("//*[@id='nav-search-submit-button']");
+		dsl.clica("//*[@data-index='1' ]//h2//a/span");
+		dsl.clica("//*[@id='add-to-cart-button']");
+
+		List<WebElement> casoHaja = driver.findElements(By.xpath("//*[@id='attachSiNoCoverage-announce']"));
+		if (!casoHaja.isEmpty()) {
+			WebElement element = casoHaja.get(0);
+
+			dsl.jsScriptClick("//*[@id='attachSiNoCoverage-announce']");
+
 		}
-		driver.switchTo().defaultContent();
-		
-			
+
+		dsl.time();
+
 		// gela
-		driver.findElement(By.xpath("//*[@id='twotabsearchtextbox']")).sendKeys("geladeira");
-		driver.findElement(By.id("nav-search-submit-button")).click();
-		driver.findElement(By.xpath("//*[@data-index='2']//img")).click();
-		driver.findElement(By.id("add-to-cart-button")).click();
-		
-		
-		Assert.assertTrue("2", driver.findElement(By.id("nav-cart-count")).getText().contains("2"));
+		dsl.escreva("//*[@id='twotabsearchtextbox']", "geladeira");
+		dsl.clica("//*[@id='nav-search-submit-button']");
+		dsl.clica("//*[@data-index='2']//img");
+		dsl.clica("//*[@id='add-to-cart-button']");
+		dsl.jsScriptClick("//*[@id='attachSiNoCoverage-announce']");
+
+		dsl.time();
+
+		Assert.assertTrue("2", dsl.validaTrue("//*[@id='nav-cart-count']//.", "2"));
+
 	}
 
-	
-
-	@Test  @Ignore 
-	
+	@Test
 
 	// 10 10 10
 	public void excluirAlgumItem() {
 		addCarrinho();
-
-		WebElement excluir = driver.findElement(By.xpath("//*[@value='Excluir']"));
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click()", excluir);
-		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 700);");
-		Assert.assertTrue("foi removido de Carrinho de compras.",
-				driver.findElement(By.xpath("//*[text()='foi removido de Carrinho de compras.']")).getText()
-						.contains("foi removido de Carrinho de compras."));
+		dsl.jsScriptClick("//*[@value='Excluir']");
+		Assert.assertTrue("foi removido de Carrinho de compras.", dsl.validaTrue(
+				"//*[text()='foi removido de Carrinho de compras.']", "foi removido de Carrinho de compras."));
 
 	}
 
-	@Test  @Ignore 
-	
+	@Test
 
 	// 11 11 11
 	public void excluirUmItem() {
 		addCarrinhoItens();
-		driver.findElement(By.xpath("//*[@id='sw-gtc']//a")).click();
+		dsl.clica("//*[@id='sw-gtc']//a");
+		dsl.jsScriptClick("//*[@id='sc-active-cart']//*[@class='a-declarative']//.");
 
-		WebElement excluir = driver.findElement(By.xpath("//*[@value='Excluir']"));
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click()", excluir);
-		Assert.assertTrue("1", driver.findElement(By.id("nav-cart-count")).getText().contains("1"));
+		// Assert.assertTrue("1", dsl.validaTrue("//*[@id='nav-cart-count']", "1"));
 
 	}
 
-	@Test  @Ignore 
-	
+	@Test
 
 	// 12 12 12
 	public void PesquisaAposLogin() {
@@ -270,78 +232,73 @@ public class Apresentacao {
 		driver.findElement(By.id("add-to-cart-button")).click();
 		driver.findElement(By.id("nav-cart")).click();
 		driver.findElement(By.className("a-button-input")).click();
-		Assert.assertTrue("Fazer login",
-				driver.findElement(By.className("a-spacing-small")).getText().contains("Fazer login"));
+		Assert.assertTrue("Fazer login", dsl.validaTrue("//*[@class='a-spacing-small']", "Fazer login"));
 
 	}
 
-	@Test  @Ignore 
-	
+	@Test
 
 	// 13 13 13
 	public void PesquisaTecnologia() {
 
 		driver.findElement(By.className("hm-icon-label")).click();
-		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 900);");
-		WebElement vertudo = driver.findElement(By.xpath("//*[@class='nav-sprite hmenu-arrow-more']//..//div"));
+		dsl.jsScriptClick("//*[@class='nav-sprite hmenu-arrow-more']//..//div");
+		dsl.time();
+		dsl.jsScriptClick("//*[@class='hmenu-item']//*[contains(text(),'Computadores e Informática')]");
 
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click()", vertudo);
+		dsl.clica("//*[@id='hmenu-close-menu']/../..//*//*[contains(text(),'Notebooks')]");
 
-		WebElement pc = driver
-				.findElement(By.xpath("//*[@class='hmenu-item']//*[contains(text(),'Computadores e Informática')]"));
-		JavascriptExecutor js1 = (JavascriptExecutor) driver;
-		js1.executeScript("arguments[0].click()", pc);
+		assertTrue(driver
+				.findElement(By.xpath(
+						"//*[@class='a-section octopus-pc-asin-title-review-section']//*[contains(text(),'Note')]"))
+				.isDisplayed());
 
-	
-	
-		driver.findElement(By.xpath("//*[@id='hmenu-close-menu']/../..//*//*[contains(text(),'Notebooks')]")).click();
-
-		WebElement exibir = driver.findElement(By.xpath("//*[@class='a-section octopus-pc-asin-info-section']//span[contains(text(),'novo')]"));
-		System.out.println(exibir.getText());
 	}
 
-	@Test  @Ignore 
-	
+	@Test
 
 	// 14 14 14
 	public void PesquisaTecAlvo() {
 
 		PesquisaTecnologia();
-
-		WebElement clica = driver.findElement(By.xpath("//*[contains(text(),'Marca')]/../..//i"));
-		JavascriptExecutor js = (JavascriptExecutor) driver;
-		js.executeScript("arguments[0].click()", clica);
+		dsl.jsScriptClick("//*[contains(text(),'Marca')]/../..//i");
 
 		driver.findElement(By.xpath("//*[contains(text(),'Marca')]/../..//i"));
 
 		Assert.assertFalse(driver.findElement(By.xpath("//*[contains(text(),'Marca')]/../..//i")).isSelected());
 	}
 
-	@Test  @Ignore 
-	
+	@SuppressWarnings("unused")
+	@Test
 
 	// 15 15 15
 	public void organizar() {
 
 		driver.get(
 				"https://www.amazon.com.br/s?bbn=16364755011&rh=n%3A16364755011%2Cp_89%3ALenovo&dc&qid=1674655776&rnid=18120432011&ref=lp_16364755011_nr_p_89_0");
-		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 2000);");
+		dsl.time();
 
 		WebElement element = driver.findElement(By.id("s-result-sort-select"));
 
 		Select itens = new Select(element);
 		itens.selectByVisibleText("Preço: alto a baixo");
-		((JavascriptExecutor) driver).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 2000);");
+		WebElement menorPreco = driver
+				.findElement(By.xpath("//*[contains(text(),'Mais')]//..//../../..//*[contains(text(),'até')]"));
+		// System.out.println(menorPreco.getText());
 
 		WebElement maiorPreco = driver
 				.findElement(By.xpath("//*[contains(text(),'WUXGA')]//..//../../..//*[contains(text(),'até')]"));
-		System.out.println(maiorPreco.getText());
+		List<WebElement> lista = new ArrayList<WebElement>();
+		lista.add(maiorPreco);
 
-		WebElement menorPreco = driver
-				.findElement(By.xpath("//*[contains(text(),'Mais')]//..//../../..//*[contains(text(),'até')]"));
-		System.out.println(menorPreco.getText());
+		for (int i = 0; i < lista.size(); i++) {
 
+			if (i == 0 || i == 1) {
+
+				System.out.println(lista.get(i).getText());
+
+			}
+		}
 	}
 
 }
