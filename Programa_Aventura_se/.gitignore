@@ -1,0 +1,12 @@
+.classpath
+.settings/org.eclipse.core.resources.prefs
+.settings/org.eclipse.jdt.core.prefs
+../pom.xml
+../src/main/java/estruturacao/Apresentacao.java
+../src/main/resources/snippet/Snippet.java
+../target/classes/META-INF/MANIFEST.MF
+../target/classes/META-INF/maven/br.com.wbrito/programa_aventura_se/pom.properties
+../target/classes/META-INF/maven/br.com.wbrito/programa_aventura_se/pom.xml
+../target/classes/estruturacao/Apresentacao.class
+../.metadata/
+../.project

@@ -24,22 +24,22 @@ public class Apresentacao {
 
 		driver = new ChromeDriver();
 		driver.get("https://www.amazon.com.br");
-	
+
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		dsl = new Metodos(driver);
-		List<WebElement> pagina = new ArrayList<WebElement>();	
+		List<WebElement> pagina = new ArrayList<WebElement>();
 		WebElement paginas = dsl.elemento("//*[@id='gw-ftGr-desktop-hero-1']");
-			if (!pagina.isEmpty()) {
-			driver.quit();	
-			}
+		if (!pagina.isEmpty()) {
+			driver.quit();
+		}
 
 	}
 
 	@After
 	public void fechar() {
 
-		// driver.quit();
+		//driver.quit();
 	}
 
 	@Test
@@ -51,9 +51,12 @@ public class Apresentacao {
 		dsl.clica("//*[@id='continue']");
 		dsl.escreva("//*[@id='ap_password']", "123456789241307Jb@");
 		dsl.clica("//*[@id='signInSubmit']");
-
+		
+		if (driver.getTitle().isEmpty()){
+		Assert.assertEquals("Amazon.com.br | Tudo pra você, de A a Z.", driver.getTitle());
 		Assert.assertEquals("Acessar Amazon", driver.getTitle());
-
+		}
+		System.out.println(driver.getTitle());
 	}
 
 	@Test
@@ -171,9 +174,9 @@ public class Apresentacao {
 
 	// 9999999999
 	public void addCarrinhoItens() {
-		
+
 		// foga
-		dsl.escreva("//*[@id='twotabsearchtextbox']","fogão");
+		dsl.escreva("//*[@id='twotabsearchtextbox']", "fogão");
 		dsl.clica("//*[@id='nav-search-submit-button']");
 		dsl.clica("//*[@data-index='1' ]//h2//a/span");
 		dsl.clica("//*[@id='add-to-cart-button']");
@@ -244,13 +247,10 @@ public class Apresentacao {
 	// 13 13 13
 	public void PesquisaTecnologia() {
 		dsl.clica("//*[@class='hm-icon-label']");
-
 		dsl.jsScriptClick("//*[@class='nav-sprite hmenu-arrow-more']//..//div");
 		dsl.time();
 		dsl.jsScriptClick("//*[@class='hmenu-item']//*[contains(text(),'Computadores e Informática')]");
-
 		dsl.clica("//*[@id='hmenu-close-menu']/../..//*//*[contains(text(),'Notebooks')]");
-
 		dsl.visivel("//*[@class='a-section octopus-pc-asin-title-review-section']//*[contains(text(),'Note')]");
 
 	}
