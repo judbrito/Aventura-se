@@ -1,41 +1,43 @@
 package Estruturacao;
 
+
+
 import java.time.Duration;
 
 import org.junit.After;
-
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+
+import Organizado.DriverFactory;
+import Organizado.Metodos;
 
 public class Apresentacao {
-
-	private WebDriver driver;
+	
+	
 	private Metodos dsl;
 	private ApresentacaoPage page;
 
 	@Before
 	public void abrir() throws Exception {
-		driver = new ChromeDriver();
-		driver.get("https://www.amazon.com.br");
-		driver.manage().window().maximize();
-		dsl = new Metodos(driver);
+		
+		DriverFactory.getDriver().get("https://www.amazon.com.br");
+		DriverFactory.getDriver().manage().window().maximize();
+		dsl = new Metodos();
 		dsl.inesperado();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		page = new ApresentacaoPage(driver);
+		DriverFactory.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		page = new ApresentacaoPage();
 	}
 
 	@After
 	public void fechar() {
-		driver.quit();
+		DriverFactory.killDriver();
 	}
 
 	@Test
 	// 1111111111111111
 	public void loga() {
 		page.setAcesso("amazonclientevip@yahoo.com", "123456789241307Jb@");
-		page.validaUm(driver);
+		page.validaUm();
 
 	}
 
@@ -44,7 +46,7 @@ public class Apresentacao {
 	public void desloga() {
 		loga();
 		page.desloga();
-		page.validaDois(driver);
+		page.validaDois(DriverFactory.getDriver());
 
 	}
 

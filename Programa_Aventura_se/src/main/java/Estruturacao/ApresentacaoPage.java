@@ -11,12 +11,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import Organizado.DriverFactory;
+import Organizado.Metodos;
 public class ApresentacaoPage {
 
 	private Metodos dsl;
 
-	public ApresentacaoPage(WebDriver driver) {
-		dsl = new Metodos(driver);
+	public ApresentacaoPage() {
+		dsl = new Metodos();
 
 	}
 
@@ -179,11 +181,11 @@ public class ApresentacaoPage {
 	}
 
 // valida 01 
-	public void validaUm(WebDriver driver) {
+	public void validaUm() {
 
-		if (driver.getTitle().isEmpty()) {
-			Assert.assertEquals("Amazon.com.br | Tudo pra você, de A a Z.", driver.getTitle());
-			Assert.assertEquals("Acessar Amazon", driver.getTitle());
+		if (DriverFactory.getDriver().getTitle().isEmpty()) {
+			Assert.assertEquals("Amazon.com.br | Tudo pra você, de A a Z.", DriverFactory.getDriver().getTitle());
+			Assert.assertEquals("Acessar Amazon", DriverFactory.getDriver().getTitle());
 
 		}
 	}
