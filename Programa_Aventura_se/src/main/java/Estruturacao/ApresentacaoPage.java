@@ -27,13 +27,13 @@ public class ApresentacaoPage {
 		dsl.clica("//*[@id='continue']");
 		dsl.escreva("//*[@id='ap_password']", senha);
 		dsl.clica("//*[@id='signInSubmit']");
+
 	}
 
 	// teste 2
 	@SuppressWarnings("unused")
 	public void desloga() {
 		Apresentacao abrir = new Apresentacao();
-		setAcesso("amazonclientevip@yahoo.com", "123456789241307Jb@");
 		dsl.jsScriptClick("//*[@id='nav-item-signout']/span");
 
 	}
@@ -57,34 +57,16 @@ public class ApresentacaoPage {
 		dsl.jsScriptClick("//*[@id='GLUXZipUpdate']/span/input");
 
 	}
-
-	// validar 5
-	public void validaTrue() {
-		WebElement visivel = dsl.elemento("//*[@id='mir-layout-DELIVERY_BLOCK-slot-PRIMARY_DELIVERY_MESSAGE_LARGE']");
-		assertNotNull(visivel);
-		System.out.println(visivel.getText());
-
-	}
-
 	// teste 6
-	public void cepFalse(String texto, String cep) {
+		public void cepFalse(String texto, String cep) {
 
-		dsl.escreva("//*[@id='twotabsearchtextbox']", texto);
-		dsl.clica("//*[@id='nav-search-submit-button']");
-		dsl.clica("//*[@data-index='2']//h2//span");
-		dsl.clica("//*[@id='contextualIngressPtLabel_deliveryShortLine']");
-		dsl.escreva("//*[@id='GLUXZipUpdateInput_0']", cep);
-		dsl.jsScriptClick("//*[@id='GLUXZipUpdate-announce']");
-	}
-
-	// validar 6
-	public void validaFalse() {
-		WebElement visivel = dsl.elemento("//*[@id='GLUXZipError']/div/div/div");
-		System.out.println(visivel.getText());
-		assertFalse("Insira um CEP válido",
-				dsl.validaTrue("//*[@id='GLUXZipError']/div/div/div", "Insira um CEP válido"));
-
-	}
+			dsl.escreva("//*[@id='twotabsearchtextbox']", texto);
+			dsl.clica("//*[@id='nav-search-submit-button']");
+			dsl.clica("//*[@data-index='2']//h2//span");
+			dsl.clica("//*[@id='contextualIngressPtLabel_deliveryShortLine']");
+			dsl.escreva("//*[@id='GLUXZipUpdateInput_0']", cep);
+			dsl.jsScriptClick("//*[@id='GLUXZipUpdate-announce']");
+		}
 
 	// teste 7
 	public void inserePedido() {
@@ -119,13 +101,8 @@ public class ApresentacaoPage {
 		dsl.clica("//*[@id='nav-search-submit-button']");
 		dsl.clica("//*[@data-index='1' ]//h2//a/span");
 		dsl.clica("//*[@id='add-to-cart-button']");
-		List<WebElement> element = new ArrayList<WebElement>();
-		if (!element.isEmpty()) {
-			element.addAll(dsl.ListElemento("//*[@id='attachSiNoCoverage-announce']"));
-			element.get(0);
-			dsl.jsScriptClick("//*[@id='attachSiNoCoverage-announce']");
-			System.out.println(element.get(0));
-		}
+		dsl.propaganda();
+	
 		dsl.time();
 		// gela
 		dsl.escreva("//*[@id='twotabsearchtextbox']", "geladeira");
@@ -155,9 +132,12 @@ public class ApresentacaoPage {
 
 	// test 12
 	public void vaiLogar() {
-		dsl.escreva("//*[@id='twotabsearchtextbox']", "televisão");
+		
+		dsl.escreva("//*[@id='twotabsearchtextbox']","televisão");
 		dsl.clica("//*[@id='nav-search-submit-button']");
-		dsl.clica("//*[@data-index='2']//*[contains(text(),'Televisão')]");
+		dsl.clica("//*[@data-index='2']//*[contains(text(),'Televisão') or contains(text(),'Monitor')]");
+		dsl.propaganda();
+		dsl.time();
 		dsl.clica("//*[@id='add-to-cart-button']");
 		dsl.clica("//*[@id='nav-cart']");
 		dsl.clica("//*[@class='a-button-input']");
@@ -198,14 +178,60 @@ public class ApresentacaoPage {
 		}
 	}
 
+// valida 01 
+	public void validaUm(WebDriver driver) {
+
+		if (driver.getTitle().isEmpty()) {
+			Assert.assertEquals("Amazon.com.br | Tudo pra você, de A a Z.", driver.getTitle());
+			Assert.assertEquals("Acessar Amazon", driver.getTitle());
+
+		}
+	}
+
+	// valida 02
+	public void validaDois(WebDriver driver) {
+		Assert.assertTrue("Fazer login",
+				dsl.validaTrue("//*[@class='a-box-inner a-padding-extra-large']//h1", "Fazer login"));
+		System.out.println(driver.getTitle());
+	}
+
+	// valida 03
+	public void validaTres() {
+		Assert.assertTrue("Bicicleta", dsl.validaTrue("//*[contains(text(),'Bicicleta')]", "Bicicleta"));
+	}
+	// valida 4
+
+	public void validaQuatro() {
+	Assert.assertTrue("Nenhum resultado para",
+			dsl.validaTrue("//*[contains(text(),'Nenhum resultado para ')]", "Nenhum resultado para"));
+	}
+	// validar 5
+	public void validaCinco() {
+		WebElement visivel = dsl.elemento("//*[@id='mir-layout-DELIVERY_BLOCK-slot-PRIMARY_DELIVERY_MESSAGE_LARGE']");
+		assertNotNull(visivel);
+		System.out.println(visivel.getText());
+
+	}
+
+	
+
+	// validar 6
+	public void validaSeis() {
+		WebElement visivel = dsl.elemento("//*[@id='GLUXZipError']/div/div/div");
+		System.out.println(visivel.getText());
+		assertFalse("Insira um CEP válido",
+				dsl.validaTrue("//*[@id='GLUXZipError']/div/div/div", "Insira um CEP válido"));
+
+	}
+
 	// valida 7
-	public void validacaoSete() {
+	public void validaSete() {
 		Assert.assertTrue("Console", dsl.validaTrue("//*[@class='a-truncate-cut']", "Console"));
 	}
 
 	// valida 8
 	@SuppressWarnings("unused")
-	public void validacaoOito() {
+	public void validaOito() {
 		WebElement custo = dsl.elemento("//span[@id='sc-subtotal-amount-buybox']/span");
 		String umItem = custo.getText();
 
@@ -214,44 +240,43 @@ public class ApresentacaoPage {
 	}
 
 	// valida 9
-	public void validacaoNove() {
+	public void validaNove() {
 		Assert.assertTrue("2", dsl.validaTrue("//*[@id='nav-cart-count']//.", "2"));
 	}
 
 	// valida 10
-	public void validacaoDez() {
+	public void validaDez() {
 		Assert.assertTrue("foi removido de Carrinho de compras.", dsl.validaTrue(
 				"//*[text()='foi removido de Carrinho de compras.']", "foi removido de Carrinho de compras."));
 	}
 
 	// valida 11
-	public void validacaodoOnze() {
+	public void validadoOnze() {
 		Assert.assertTrue("1", dsl.validaTrue("//*[@id='nav-cart-count']", "1"));
 	}
 
 	// valida 12
-	public void validacaodoDoze() {
+	public void validadoDoze() {
 		Assert.assertTrue("Fazer login", dsl.validaTrue("//*[@class='a-spacing-small']", "Fazer login"));
 	}
 
 	// valida 13
-	public void validacaoTreze() {
+	public void validaTreze() {
 
 		dsl.visivel("//*[@class='a-section octopus-pc-asin-title-review-section']//*[contains(text(),'Note')]");
 
 	}
 
 	// valida 13
-	public void validacaoQuatorze() {
+	public void validaQuatorze() {
 		dsl.invalido("//*[contains(text(),'Marca')]/../..//i");
 	}
 
 	// valida 15
-	public void validacaoQuinze() {
+	public void validaQuinze() {
 		WebElement menorPreco = dsl.elemento("//*[contains(text(),'Mais')]//..//../../..//*[contains(text(),'até')]");
 		WebElement maiorPreco = dsl.elemento("//*[contains(text(),'WUXGA')]//..//../../..//*[contains(text(),'até')]");
 		Assert.assertTrue(maiorPreco != menorPreco);
 		System.out.println("Valor mais alto dobrado: " + maiorPreco.getText());
 	}
-
 }
