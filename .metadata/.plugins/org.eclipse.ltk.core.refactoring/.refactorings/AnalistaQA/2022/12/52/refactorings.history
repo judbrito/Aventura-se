@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move package &apos;AutomationFramework&apos; to &apos;DemoQA/src&apos;&#x0D;&#x0A;- Original project: &apos;AnalistaQA&apos;&#x0D;&#x0A;- Destination element: &apos;DemoQA/src&apos;&#x0D;&#x0A;- Original element: &apos;AnalistaQA/src/AutomationFramework&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move package" destination="=DemoQA/src" element1="/src&lt;AutomationFramework" flags="589830" fragments="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1671916768248" version="1.0"/>
-</session>
