@@ -1,0 +1,17 @@
+
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class Nova {
+
+	public static void main(String[] args) {
+		//System.setProperty("webdriver.chrome.driver", "Chrome Driver executable location on your system"); 
+		WebDriver driver = new ChromeDriver();
+//	WebDriver driver = new FireFoxdriver();
+		driver.get("https;//google.com");
+		driver.quit();
+
+	}
+
+}

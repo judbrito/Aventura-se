@@ -1,0 +1,21 @@
+
+
+import org.openqa.selenium.WebDriver;
+
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Nova {
+
+	public static void main(String[] args) {
+		//System.setProperty("webdriver.chrome.driver", "C:\\driver\\chromedriver.exe"); 
+	//WebDriver driver = new ChromeDriver();
+	WebDriver driver = new FirefoxDriver();
+		driver.get("https://google.com");
+	
+		System.out.println(driver.getTitle());
+	System.out.println("FACÇÃO");
+		driver.quit();
+
+	}
+
+}

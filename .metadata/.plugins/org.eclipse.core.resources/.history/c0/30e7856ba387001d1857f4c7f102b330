@@ -1,0 +1,29 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByClassName;
+import org.openqa.selenium.By.ByTagName;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Sleeper;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.w3c.dom.events.UIEvent;
+
+import dev.failsafe.internal.util.Assert;
+import net.bytebuddy.implementation.EqualsMethod;
+
+import java.awt.AWTException;
+import java.awt.Robot;
+
+import javax.swing.event.MenuKeyEvent;
+public class First {
+
+	public static void main(String[] args) {
+	//System.setProperty("webdriver.gecko.driver","C:\\Users\\JudrianideBrito\\Downloads\\driver\\geckodriver.exe");
+		WebDriver driver = new FirefoxDriver();
+		driver.get("https:\\www.google.com");
+	 System.out.println(driver.getTitle());	
+	}
+}

@@ -1,0 +1,31 @@
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.By.ByClassName;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Sleeper;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import dev.failsafe.internal.util.Assert;
+import net.bytebuddy.implementation.EqualsMethod;
+
+@SuppressWarnings("unused")
+public class Tester {
+
+	public static void main(String[] args) {
+
+		WebDriver driver = new FirefoxDriver();
+		driver.get("https://www.google.com.br");
+
+		WebElement digitImput = driver.findElement(By.className("gLFyf"));
+		digitImput.sendKeys("nissan Versa 2023");
+		
+		WebElement pesquisar = driver.findElement(By.className("gNO89b"));
+		pesquisar.click();
+
+	}
+
+}

@@ -1,2 +1,0 @@
-INDEX VERSION 1.131+C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\Programa_Aventura_se\.metadata\.plugins\org.eclipse.jdt.core
-1865797976.index

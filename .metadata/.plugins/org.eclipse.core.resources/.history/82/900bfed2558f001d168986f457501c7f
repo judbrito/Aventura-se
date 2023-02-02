@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+
+public class Yhaaa {
+
+
+	public static void main(String[] args) {
+		String aula1 = "Conhecendo  listas";
+		String aula2 = "Modelando listas";
+		String aula3 = "Trabalhando listas";
+		String aula4 = "Mais sobre listas";
+
+		ArrayList<String> aula = new ArrayList<>();
+		aula.add(aula1);
+		aula.add(aula2);
+		aula.add(aula3);
+		aula.add(aula4);
+
+		System.out.println(aula);
+		aula.remove(3);
+		System.out.println(aula);
+		for (String aulas : aula) {
+			System.out.println("aula: "+ aulas);
+			
+		}
+		
+		String segundaAula = aula.get(2);
+		System.out.println(segundaAula);
+		
+		for(int i = 0;i <aula.size();i++ ) {
+			System.out.println("com for aula: "+aula.get(i));
+		}
+		aula.forEach(aulas->{
+			System.out.println("יייייייייי judri");
+			System.out.println("separando informaחדo");
+			System.out.println("Aulas Foreach: "+ aula);
+			});
+
+	}
+}
+
+
