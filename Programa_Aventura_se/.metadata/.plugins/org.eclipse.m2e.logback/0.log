@@ -1,0 +1,49 @@
+2023-02-02 15:22:45,901 [Worker-6: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-02-02 15:23:10,629 [Worker-14: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: br.com.wbrito:Programa_Aventura_se:0.0.1-SNAPSHOT @ C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\pom.xml.
+2023-02-02 15:23:10,629 [Worker-3: Building] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: br.com.wbrito:Programa_Aventura_se:0.0.1-SNAPSHOT @ C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\pom.xml.
+2023-02-02 15:23:11,629 [Worker-3: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:23:11,633 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\src\main\resources
+2023-02-02 15:23:11,641 [Worker-3: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:23:11,646 [Worker-3: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\src\test\resources
+2023-02-02 15:23:13,727 [Worker-17: Updating Maven Dependencies] INFO  o.e.m.c.i.l.LifecycleMappingFactory - Using org.eclipse.m2e.jdt.JarLifecycleMapping lifecycle mapping for MavenProject: br.com.wbrito:Programa_Aventura_se:0.0.1-SNAPSHOT @ C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\pom.xml.
+2023-02-02 15:23:14,551 [Worker-17: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:23:14,556 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\src\main\resources
+2023-02-02 15:23:14,560 [Worker-17: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:23:14,565 [Worker-17: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\src\test\resources
+2023-02-02 15:24:35,395 [Worker-6: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:24:35,404 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-02-02 15:24:35,406 [Worker-6: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:24:35,410 [Worker-6: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\src\test\resources
+2023-02-02 15:27:26,105 [Worker-12: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:27:26,113 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-02-02 15:27:26,116 [Worker-12: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:27:26,121 [Worker-12: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\src\test\resources
+2023-02-02 15:30:32,986 [Worker-0: Launching Apresentacao.desloga] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:30:32,987 [Worker-0: Launching Apresentacao.desloga] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-02-02 15:30:32,990 [Worker-0: Launching Apresentacao.desloga] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:30:32,991 [Worker-0: Launching Apresentacao.desloga] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\src\test\resources
+2023-02-02 15:40:11,385 [Worker-24: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:40:11,391 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-02-02 15:40:11,395 [Worker-24: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:40:11,400 [Worker-24: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\src\test\resources
+2023-02-02 15:40:23,122 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2023-02-02 15:44:17,578 [Worker-5: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:44:17,587 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-02-02 15:44:17,591 [Worker-5: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:44:17,595 [Worker-5: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\src\test\resources
+2023-02-02 15:48:16,939 [Worker-14: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:48:16,947 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-02-02 15:48:16,950 [Worker-14: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:48:16,955 [Worker-14: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\src\test\resources
+2023-02-02 15:48:40,250 [Worker-23: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:48:40,256 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-02-02 15:48:40,258 [Worker-23: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:48:40,261 [Worker-23: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\src\test\resources
+2023-02-02 15:49:20,445 [Worker-21: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:49:20,449 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-02-02 15:49:20,452 [Worker-21: Building] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:49:20,456 [Worker-21: Building] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\src\test\resources
+2023-02-02 15:51:25,921 [Worker-22: Launching Apresentacao] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:51:25,926 [Worker-22: Launching Apresentacao] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
+2023-02-02 15:51:25,931 [Worker-22: Launching Apresentacao] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2023-02-02 15:51:25,936 [Worker-22: Launching Apresentacao] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\src\test\resources
