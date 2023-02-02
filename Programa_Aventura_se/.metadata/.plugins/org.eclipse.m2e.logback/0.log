@@ -47,3 +47,4 @@
 2023-02-02 15:51:25,926 [Worker-22: Launching Apresentacao] INFO  o.e.m.c.i.embedder.EclipseLogger - Copying 0 resource
 2023-02-02 15:51:25,931 [Worker-22: Launching Apresentacao] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
 2023-02-02 15:51:25,936 [Worker-22: Launching Apresentacao] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory C:\Users\JudrianideBrito\Desktop\PROJETO BRITO\programa_aventura_se\TesteQA\Programa_Aventura_se\src\test\resources
+2023-02-02 16:10:23,417 [Worker-1: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
