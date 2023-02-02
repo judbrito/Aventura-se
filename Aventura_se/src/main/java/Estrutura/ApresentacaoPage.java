@@ -164,6 +164,8 @@ public class ApresentacaoPage {
 	// teste 15
 	@SuppressWarnings("unused")
 	public void organizar() {
+		
+		
 		dsl.elemento("//*[contains(text(),'Marca')]/../..//i//.").click();
 		WebElement element = dsl.elemento("//*[@id='s-result-sort-select']");
 		Select itens = new Select(element);
