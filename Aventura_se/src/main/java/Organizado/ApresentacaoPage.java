@@ -1,4 +1,4 @@
-package Estrutura;
+package Organizado;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
@@ -10,16 +10,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
-import Organizado.DriverFactory;
-import Organizado.Metodos;
-
 public class ApresentacaoPage {
 
 	private Metodos dsl;
+	@SuppressWarnings("unused")
+	private ApresentacaoPage page;
 
 	public ApresentacaoPage() {
 		dsl = new Metodos();
-
+		
+			
 	}
 
 	// Logar teste 1
@@ -33,9 +33,9 @@ public class ApresentacaoPage {
 	}
 
 	// teste 2
-	@SuppressWarnings("unused")
+
 	public void desloga() {
-		Apresentacao abrir = new Apresentacao();
+		setAcesso("amazonclientevip@yahoo.com", "123456789241307Jb@");
 		dsl.jsScriptClick("//*[@id='nav-item-signout']/span");
 
 	}

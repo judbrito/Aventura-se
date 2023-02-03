@@ -11,17 +11,20 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import Organizado.ApresentacaoPage;
 import Organizado.Metodos;
+
 
 public class Apresentacao {
 	
-	
 	private Metodos dsl;
 	private ApresentacaoPage page;
+	
+
 
 	@Before
 	public void abrir() throws Exception {
-		
+
 		getDriver().get("https://www.amazon.com.br");
 		getDriver().manage().window().maximize();
 		dsl = new Metodos();
@@ -46,7 +49,7 @@ public class Apresentacao {
 	@Test
 	// 22222222222
 	public void desloga() {
-		loga();
+	
 		page.desloga();
 
 	}
