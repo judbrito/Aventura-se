@@ -1,155 +1,147 @@
 package Estrutura;
 
-
-
-import static Organizado.DriverFactory.getDriver;
 import static Organizado.DriverFactory.killDriver;
 
-import java.time.Duration;
-
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import Organizado.ApresentacaoPage;
 import Organizado.Metodos;
+import Organizado.PaginaUnica;
 
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Apresentacao {
-	
-	private Metodos dsl;
+	static Metodos dsl;
 	private ApresentacaoPage page;
-	
-
 
 	@Before
+
 	public void abrir() throws Exception {
 
-		getDriver().get("https://www.amazon.com.br");
-		getDriver().manage().window().maximize();
+		PaginaUnica.abrirUnico();
 		dsl = new Metodos();
-		dsl.inesperado();
-		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		page = new ApresentacaoPage();
+
 	}
 
-	@After
-	public void fechar() {
+	@AfterClass
+	public static void fechar() {
+		if (PaginaUnica.fechaWeb) {
+
+		}
 		killDriver();
 	}
 
 	@Test
-	// 1111111111111111
-	public void loga() {
+
+	public void a_Id_0001() {
 		page.setAcesso("amazonclientevip@yahoo.com", "123456789241307Jb@");
-		page.validaUm();
 
 	}
 
 	@Test
-	// 22222222222
-	public void desloga() {
-	
+	public void b_Id_0002() {
+
 		page.desloga();
 
 	}
 
 	@Test
-	// 33333333333
-	public void consultaBike() {
-		page.consultaAlgo("bicicleta aro 29");
-		page.validaTres();
+
+	public void c_Id_0003() {
+		page.consultabike("bicicleta aro 29");
+
 	}
 
 	@Test
-	// 444444444444
-	public void consultaError() {
+
+	public void d_Id_0004() {
 		page.consultaAlgo("devdebrito");
-		page.validaQuatro();
+
 	}
 
 	@Test
-	// 555555555
-	public void cepTrue() {
+
+	public void e_Id_0005() {
 		page.cepTrue("Frigideira", "06010067");
-		page.validaCinco();
+
 	}
 
 	@Test
-	// 6666666666666
-	public void cepFalse() {
+
+	public void f_Id_0006() {
 		page.cepFalse("copo", "00000000");
-		page.validaSeis();
+
 	}
 
 	@Test
-	// 77777777777
-	public void addCarrinho() {
+
+	public void g_Id_0007() {
 		page.inserePedido();
-		page.validaSete();
+
 	}
 
 	@Test
-	// 8888888888888
-	public void addQtdItens() {
-		addCarrinho();
+
+	public void h_Id_0008() {
+		g_Id_0007();
 		page.AddItens();
-		page.validaOito();
 
 	}
 
 	@Test
-	// 9999999999
-	public void addCarrinhoItens() {
+
+	public void i_Id_0009() {
 		page.doisItens();
-		page.validaNove();
 	}
 
 	@Test
-	// 10 10 10
-	public void excluirAlgumItem() {
-		addCarrinho();
+
+	public void j_Id_0010() {
+		g_Id_0007();
 		page.excluiItens();
-		page.validaDez();
+
 	}
 
 	@Test
-	// 11 11 11
-	public void excluirUmItem() {
-		addCarrinhoItens();
+
+	public void l_Id_0011() {
+
+		i_Id_0009();
+
 		page.excluiUmItem();
-		page.validadoOnze();
 
 	}
 
 	@Test
-	// 12 12 12
-	public void pesquisaAposLogin() {
-		page.vaiLogar();
-		page.validadoDoze();
+
+	public void m_Id_0012() {
+		page.voltaLogin();
+
 	}
 
 	@Test
-	// 13 13 13
-	public void pesquisaTecnologia() {
+
+	public void n_Id_0013() {
 		page.tecnologia();
-		page.validaTreze();
-	}
-
-	@Test
-	// 14 14 14
-	public void pesquisaTecAlvo() {
-		pesquisaTecnologia();
-		page.validaQuatorze();
 
 	}
 
 	@Test
-	// 15 15 15
-	public void organizarcao() {
-		pesquisaTecAlvo();
+
+	public void o_Id_0014() {
+		n_Id_0013();
+		page.tecAlvo();
+	}
+
+	@Test
+
+	public void p_Id_0015() {
+		o_Id_0014();
 		page.organizar();
-		page.validaQuinze();
 
 	}
 }

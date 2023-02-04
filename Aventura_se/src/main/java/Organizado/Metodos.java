@@ -1,11 +1,10 @@
 package Organizado;
 
-
-
 import static Organizado.DriverFactory.getDriver;
 import static org.junit.Assert.assertFalse;
-import java.util.List;
 import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
@@ -16,10 +15,6 @@ import org.openqa.selenium.support.ui.UnexpectedTagNameException;
 
 public class Metodos {
 
-
-	
-	
-
 	public void clica(String by) {
 		getDriver().findElement(By.xpath(by)).click();
 	}
@@ -29,12 +24,21 @@ public class Metodos {
 	}
 
 	public Object jsScriptClick(String by) {
-		return ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click()", getDriver().findElement(By.xpath(by)));
+		return ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click()",
+				getDriver().findElement(By.xpath(by)));
 
 	}
 
+	public void zeraCarrinho() {
+		getDriver().get("https://www.amazon.com.br/gp/cart/view.html?ref_=sw_gtc");
+		for (int i = 0; i < 2; i++) {
+			jsScriptClick("//*[@value='Excluir']");
+		}
+	}
+
 	public void time() {
-		((JavascriptExecutor) getDriver()).executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 700);");
+		((JavascriptExecutor) getDriver())
+				.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 700);");
 
 	}
 
@@ -47,7 +51,7 @@ public class Metodos {
 		return getDriver().findElement(By.xpath(by));
 	}
 
-	@SuppressWarnings({ "unchecked" })
+	@SuppressWarnings("unchecked")
 	public List<WebElement> ListElemento(String by) {
 		return (List<WebElement>) getDriver().findElement(By.xpath(by));
 	}
@@ -55,12 +59,6 @@ public class Metodos {
 	public void visivel(String by) {
 		assertTrue(getDriver().findElement(By.xpath(by)).isDisplayed());
 
-	}
-
-	
-
-	public void invalido(String by) {
-		assertFalse(getDriver().findElement(By.xpath(by)).isSelected());
 	}
 
 	public void propaganda() {
@@ -79,12 +77,12 @@ public class Metodos {
 		try {
 			getDriver().get("https://www.amazon.com.br");
 		} catch (Exception e) {
-		
+
 			if (e instanceof UnexpectedTagNameException) {
-			
+
 				getDriver().close();
 			} else {
-				
+
 				throw e;
 			}
 		}

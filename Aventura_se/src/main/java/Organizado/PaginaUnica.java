@@ -1,16 +1,28 @@
 package Organizado;
 
 import static Organizado.DriverFactory.getDriver;
-import Organizado.DriverFactory;
+
 import java.time.Duration;
 
 public class PaginaUnica {
 
-	  
-	DriverFactory.get("https://www.example.com")
-	    
-	    // Execute test cases here
-	    
-	    driver.quit();
-	  }
+	private static Metodos dsl;
+	@SuppressWarnings("unused")
+	private static  ApresentacaoPage page;
+
+	public static boolean fechaWeb = false;
+
+	public static   void abrirUnico() throws Exception {
+		getDriver().get("https://www.amazon.com.br");
+		getDriver().manage().window().maximize();
+		dsl = new Metodos();
+		dsl.inesperado();
+		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		page = new ApresentacaoPage();
 	}
+
+
+	
+	
+
+}
