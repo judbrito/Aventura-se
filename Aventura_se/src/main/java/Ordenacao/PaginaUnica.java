@@ -1,8 +1,11 @@
-package Organizado;
+package Ordenacao;
 
-import static Organizado.DriverFactory.getDriver;
+import static Webdriver.DriverFactory.getDriver;
 
 import java.time.Duration;
+
+import DSL.Metodos;
+import Organizado.ApresentacaoPage;
 
 public class PaginaUnica {
 

@@ -1,6 +1,6 @@
 package Estrutura;
 
-import static Organizado.DriverFactory.killDriver;
+import static Webdriver.DriverFactory.killDriver;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -8,13 +8,12 @@ import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import Ordenacao.PaginaUnica;
 import Organizado.ApresentacaoPage;
-import Organizado.Metodos;
-import Organizado.PaginaUnica;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Apresentacao {
-	static Metodos dsl;
+	static DSL.Metodos dsl;
 	private ApresentacaoPage page;
 
 	@Before
@@ -22,7 +21,7 @@ public class Apresentacao {
 	public void abrir() throws Exception {
 
 		PaginaUnica.abrirUnico();
-		dsl = new Metodos();
+		dsl = new DSL.Metodos();
 		page = new ApresentacaoPage();
 
 	}
@@ -34,7 +33,7 @@ public class Apresentacao {
 		}
 		killDriver();
 	}
-
+	
 	@Test
 
 	public void a_Id_0001() {
@@ -53,7 +52,7 @@ public class Apresentacao {
 
 	public void c_Id_0003() {
 		page.consultabike("bicicleta aro 29");
-
+		
 	}
 
 	@Test

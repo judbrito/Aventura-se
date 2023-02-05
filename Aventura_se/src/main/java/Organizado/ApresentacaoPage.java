@@ -10,6 +10,9 @@ import org.junit.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
+import DSL.Metodos;
+import Webdriver.DriverFactory;
+
 public class ApresentacaoPage {
 
 	private Metodos dsl;
@@ -124,7 +127,7 @@ public class ApresentacaoPage {
 		dsl.time();
 		WebElement ver = dsl.elemento("//span[@id='sc-subtotal-amount-buybox']/span");
 		String doisItens = ver.getText();
-		
+
 	}
 
 	// test 9

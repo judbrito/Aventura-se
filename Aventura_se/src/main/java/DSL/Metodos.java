@@ -1,7 +1,7 @@
-package Organizado;
+package DSL;
 
-import static Organizado.DriverFactory.getDriver;
-import static org.junit.Assert.assertFalse;
+
+import static Webdriver.DriverFactory.getDriver;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
