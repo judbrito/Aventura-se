@@ -11,11 +11,11 @@ public class PaginaUnica {
 
 	private static Metodos dsl;
 	@SuppressWarnings("unused")
-	private static  ApresentacaoPage page;
+	private static ApresentacaoPage page;
 
 	public static boolean fechaWeb = false;
 
-	public static   void abrirUnico() throws Exception {
+	public static void abrirUnico() throws Exception {
 		getDriver().get("https://www.amazon.com.br");
 		getDriver().manage().window().maximize();
 		dsl = new Metodos();
@@ -23,9 +23,5 @@ public class PaginaUnica {
 		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		page = new ApresentacaoPage();
 	}
-
-
-	
-	
 
 }

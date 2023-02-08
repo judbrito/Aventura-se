@@ -1,6 +1,5 @@
 package DSL;
 
-
 import static Webdriver.DriverFactory.getDriver;
 import static org.junit.Assert.assertTrue;
 
@@ -14,14 +13,29 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.UnexpectedTagNameException;
 
 public class Metodos {
+	
+	
 
-	public void clica(String by) {
-		getDriver().findElement(By.xpath(by)).click();
+
+	public WebElement clica(String by) {
+		WebElement clicou = elemento(by);
+		clicou.click();
+		return clicou;
+	}
+	public WebElement escreva(String by, String texto) {
+		WebElement escreveu = elemento(by);
+		escreveu.sendKeys(texto);	
+		return escreveu;
 	}
 
-	public void escreva(String by, String texto) {
-		getDriver().findElement(By.xpath(by)).sendKeys(texto);
-	}
+	
+//	public String escreva(String by, String texto) {
+//		String xpath = "//*[@id='nav-link-accountList-nav-line-1']";
+//		WebElement element = getDriver().findElement(By.xpath(by));
+//		element.click();
+//		return xpath;
+//		getDriver().findElement(By.xpath(by)).sendKeys(texto);
+//	}
 
 	public Object jsScriptClick(String by) {
 		return ((JavascriptExecutor) getDriver()).executeScript("arguments[0].click()",

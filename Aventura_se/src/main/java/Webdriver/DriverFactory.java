@@ -1,6 +1,7 @@
 package Webdriver;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 public class DriverFactory {
@@ -25,5 +26,15 @@ public class DriverFactory {
 			driver = null;
 
 		}
+	}
+
+	public static WebElement getDriver(String by) {
+		if (driver != null) {
+			driver.quit();
+			driver = null;
+
+		}
+
+		return null;
 	}
 }

@@ -1,5 +1,6 @@
 package Organizado;
 
+import static Webdriver.DriverFactory.getDriver;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
@@ -11,7 +12,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import DSL.Metodos;
-import Webdriver.DriverFactory;
 
 public class ApresentacaoPage {
 
@@ -23,27 +23,28 @@ public class ApresentacaoPage {
 	}
 
 	// Logar teste 1
-	public void setAcesso(String login, String senha) {
+	public String setAcesso(String login, String senha) {
 		dsl.clica("//*[@id='nav-link-accountList-nav-line-1']");
 		dsl.escreva("//*[@id='ap_email']", login);
 		dsl.clica("//*[@id='continue']");
 		dsl.escreva("//*[@id='ap_password']", senha);
 		dsl.clica("//*[@id='signInSubmit']");
 
-		if (DriverFactory.getDriver().getTitle().isEmpty()) {
-			Assert.assertEquals("Amazon.com.br | Tudo pra você, de A a Z.", DriverFactory.getDriver().getTitle());
-			Assert.assertEquals("Acessar Amazon", DriverFactory.getDriver().getTitle());
-
+		if (getDriver().getTitle().isEmpty()) {
+			Assert.assertEquals("Amazon.com.br | Tudo pra você, de A a Z.", getDriver().getTitle());
+			Assert.assertEquals("Acessar Amazon", getDriver().getTitle());
 		}
+		return null;
+	
 	}
-
 //teste 02
-	public void desloga() {
+	public String desloga() {
 
 		dsl.elemento("//*[@id='nav-link-accountList']");
 		dsl.jsScriptClick("//*[@id='nav-item-signout']/span");
 		Assert.assertTrue("Fazer login",
 				dsl.validaTrue("//*[@class='a-box-inner a-padding-extra-large']//h1", "Fazer login"));
+		return null;
 
 	}
 
@@ -113,7 +114,7 @@ public class ApresentacaoPage {
 	}
 
 	// test 8
-	@SuppressWarnings("unused")
+
 	public void AddItens() {
 
 		WebElement custo = dsl.elemento("//span[@id='sc-subtotal-amount-buybox']/span");
@@ -125,8 +126,6 @@ public class ApresentacaoPage {
 		Select itens = new Select(element);
 		itens.selectByValue("2");
 		dsl.time();
-		WebElement ver = dsl.elemento("//span[@id='sc-subtotal-amount-buybox']/span");
-		String doisItens = ver.getText();
 
 	}
 
@@ -186,7 +185,8 @@ public class ApresentacaoPage {
 
 		dsl.escreva("//*[@id='twotabsearchtextbox']", "televisão");
 		dsl.clica("//*[@id='nav-search-submit-button']");
-		dsl.clica("//*[@data-index='2']//*[contains(text(),'Televisão') or contains(text(),'Monitor')]");
+		dsl.clica(
+				"//*[@data-index='2']//*[contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'televisão') or contains(translate(text(), 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'monitor')]");
 		dsl.propaganda();
 		dsl.time();
 		dsl.clica("//*[@id='add-to-cart-button']");

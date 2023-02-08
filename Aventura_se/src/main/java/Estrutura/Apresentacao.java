@@ -1,7 +1,5 @@
 package Estrutura;
 
-import static Webdriver.DriverFactory.killDriver;
-
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
@@ -13,7 +11,7 @@ import Organizado.ApresentacaoPage;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Apresentacao {
-	static DSL.Metodos dsl;
+	
 	private ApresentacaoPage page;
 
 	@Before
@@ -21,21 +19,21 @@ public class Apresentacao {
 	public void abrir() throws Exception {
 
 		PaginaUnica.abrirUnico();
-		dsl = new DSL.Metodos();
 		page = new ApresentacaoPage();
-
+	
 	}
 
 	@AfterClass
 	public static void fechar() {
-		if (PaginaUnica.fechaWeb) {
 
-		}
-		killDriver();
+		//killDriver();
 	}
-	
-	@Test
 
+	@Test
+	/*
+	 * 1. Realizar login na aplicação Descrição: Realizar login na aplicação e
+	 * validar a página de destino esperada.
+	 */
 	public void a_Id_0001() {
 		page.setAcesso("amazonclientevip@yahoo.com", "123456789241307Jb@");
 
@@ -52,7 +50,7 @@ public class Apresentacao {
 
 	public void c_Id_0003() {
 		page.consultabike("bicicleta aro 29");
-		
+
 	}
 
 	@Test
