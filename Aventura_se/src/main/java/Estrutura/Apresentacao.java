@@ -1,18 +1,32 @@
 package Estrutura;
 
+import static Webdriver.DriverFactory.killDriver;
+
+import java.io.IOException;
+
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 
+import DSL.Metodos;
 import Ordenacao.PaginaUnica;
 import Organizado.ApresentacaoPage;
+import Planilha.Registro;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Apresentacao {
-	
+
+
+
+
 	private ApresentacaoPage page;
+
+	DSL.Metodos dsl = new Metodos();
 
 	@Before
 
@@ -20,13 +34,13 @@ public class Apresentacao {
 
 		PaginaUnica.abrirUnico();
 		page = new ApresentacaoPage();
-	
+
 	}
 
 	@AfterClass
 	public static void fechar() {
 
-		//killDriver();
+		killDriver();
 	}
 
 	@Test
@@ -34,29 +48,34 @@ public class Apresentacao {
 	 * 1. Realizar login na aplicação Descrição: Realizar login na aplicação e
 	 * validar a página de destino esperada.
 	 */
-	public void a_Id_0001() {
-		page.setAcesso("amazonclientevip@yahoo.com", "123456789241307Jb@");
+	public void a_Id_0001() throws EncryptedDocumentException, IOException {
+
+		page.logar();
+
+		
 
 	}
 
 	@Test
-	public void b_Id_0002() {
+	public void b_Id_0002() throws EncryptedDocumentException, IOException {
 
-		page.desloga();
+		page.deslogar();
 
 	}
 
 	@Test
 
-	public void c_Id_0003() {
-		page.consultabike("bicicleta aro 29");
+	public void c_Id_0003() throws EncryptedDocumentException, IOException {
+
+	
+		page.validaBike();
 
 	}
 
 	@Test
 
 	public void d_Id_0004() {
-		page.consultaAlgo("devdebrito");
+		page.consultaAlgo("devdeBrito");
 
 	}
 
@@ -142,3 +161,4 @@ public class Apresentacao {
 
 	}
 }
+

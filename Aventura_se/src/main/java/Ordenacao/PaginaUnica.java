@@ -22,6 +22,7 @@ public class PaginaUnica {
 		dsl.inesperado();
 		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		page = new ApresentacaoPage();
+		
 	}
 
 }

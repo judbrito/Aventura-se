@@ -2,109 +2,55 @@ package Planilha;
 
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.apache.poi.EncryptedDocumentException;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 import DSL.Metodos;
 
 public class Registro {
 
-	Metodos dsl = new Metodos() {
-	};
+	private static Sheet planilha = initPlanilha();
+	private static Metodos dsl = new Metodos();
 
-	@SuppressWarnings("deprecation")
-	@Test
-	public void main() throws IOException {
-
-		// Create an object of File class to open xlsx file
-		File file = new File(
-				"C:\\Users\\JudrianideBrito\\Desktop\\PROJETO BRITO\\programa_aventura_se\\Aventura_se\\src\\main\\resources\\evidencia.xlsx");
-		// Create an object of FileInputStream class to read excel file
-		FileInputStream inputStream = new FileInputStream(file);
-
-		// creating workbook instance that refers to .xls file
-		XSSFWorkbook wb = new XSSFWorkbook(inputStream);
-
-		// creating a Sheet object
-		XSSFSheet sheet = wb.getSheet("massaDados");
-
-		// get all rows in the sheet
-		int rowCount = sheet.getLastRowNum() - sheet.getFirstRowNum();
-
-		// Creating an object of ChromeDriver
-		WebDriver driver = new ChromeDriver();
-		// Create a row object to retrieve row at index 3
-		XSSFRow titulo = sheet.createRow(0);
-
-		titulo.createCell(0).setCellValue("Identificação");
-		titulo.createCell(1).setCellValue("Entrada");
-		titulo.createCell(2).setCellValue("Senha");
-		titulo.createCell(3).setCellValue("Situação");
-
-		driver.get("https://www.amazon.com.br");
-
-		WebElement entrada = driver.findElement(By.xpath("//*[@id='nav-link-accountList-nav-line-1']"));
-		entrada.click();
-		driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
-		WebElement email = driver.findElement(By.xpath("//*[@id='ap_email']"));
-		WebElement processa = driver.findElement(By.xpath("//*[@id='continue']"));
-		processa.click();
-		WebElement senha = driver.findElement(By.xpath("//*[@id='ap_password']"));
-		WebElement submitBtn = driver.findElement(By.xpath("//*[@id='signInSubmit']"));
-
-		// iterate over all the rows in Excel and put data in the form.
-		for (int i = 1; i <= rowCount; i++) {
-			// Enter the values read from Excel in firstname,lastname,mobile,email,address
-			email.sendKeys(sheet.getRow(i).getCell(1).getStringCellValue());
-			senha.sendKeys(sheet.getRow(i).getCell(2).getStringCellValue());
-
-			// Click on the gender radio button using javascript
-			JavascriptExecutor js = (JavascriptExecutor) driver;
-			js.executeScript("arguments[0].click();", submitBtn);
-
-			WebElement confirmationMessage = driver
-					.findElement(By.xpath("//div[text()='Thanks for submitting the form']"));
-
-			// create a new cell in the row at index 6
-			XSSFCell cell = sheet.getRow(i).createCell(3);
-
-			// check if confirmation message is displayed
-			if (confirmationMessage.isDisplayed()) {
-				// if the message is displayed , write PASS in the excel sheet
-				cell.setCellValue("PASS");
-
-			} else {
-				// if the message is not displayed , write FAIL in the excel sheet
-				cell.setCellValue("FAIL");
-			}
-
-			// Write the data back in the Excel file
-			FileOutputStream outputStream = new FileOutputStream(
-					"C:\\Users\\JudrianideBrito\\Desktop\\PROJETO BRITO\\programa_aventura_se\\Aventura_se\\src\\main\\resources\\evidencia.xlsx");
-			wb.write(outputStream);
-
-			WebElement closebtn = driver.findElement(By.id("closeLargeModal"));
-			js.executeScript("arguments[0].click();", closebtn);
-
-			driver.manage().timeouts().implicitlyWait(5000, TimeUnit.SECONDS);
+	private static Sheet initPlanilha() {
+		try {
+			String file = System.getProperty("user.dir") + "./src/main/resources/evidencia1.xlsx";
+			FileInputStream fis = new FileInputStream(new File(file));
+			Workbook arquivo = WorkbookFactory.create(fis);
+			return arquivo.getSheetAt(0);
+		} catch (EncryptedDocumentException | IOException e) {
+			e.printStackTrace();
+			return null;
 		}
+	}
 
-		// Close the workbook
-		wb.close();
+	public void extracaoEmail() throws IOException {
+		try {
+			Row linhas = planilha.getRow(1);
 
-		// Quit the driver
-		driver.quit();
+			WebElement email = dsl.path("//*[@id='ap_email']");
+			email.sendKeys(linhas.getCell(1).getStringCellValue());
+		} catch (EncryptedDocumentException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void extracaoSenha() {
+		try {
+			if (planilha == null) {
+				throw new Exception("A planilha não foi inicializada.");
+			}
+			Row linhas = planilha.getRow(1);
+			WebElement senha = dsl.path("//*[@id='ap_password']");
+			senha.sendKeys(linhas.getCell(2).getStringCellValue());
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
