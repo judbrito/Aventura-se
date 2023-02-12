@@ -17,26 +17,30 @@ import org.openqa.selenium.support.ui.Select;
 import DSL.Metodos;
 import Planilha.Registro;
 import Planilha.Registro;
+
 @SuppressWarnings("unused")
 public class ApresentacaoPage {
 	private Sheet planilha;
 
-	Registro arquivo = new Registro();
+	Registro registro = new Registro();
 
-	DSL.Metodos dsl = new Metodos();
+	private Metodos dsl = new Metodos();
 
-	// Logar teste 1
+	public ApresentacaoPage() {
+		new Metodos();
+	}
 
-	public String logar() throws IOException {
+	// teste 01
 
-        dsl.path("//*[@id='nav-link-accountList-nav-line-1']");
-        dsl.clicar("//*[@id='nav-link-accountList']");
-		arquivo.extracaoEmail();
-		 dsl.clicar("//*[@id='continue']");
-		 Registro.extracaoSenha();
-		 dsl.clicar("//*[@id='signInSubmit']");
-		
-		
+	public String logar() {
+
+		dsl.path("//*[@id='nav-link-accountList-nav-line-1']");
+		dsl.clicar("//*[@id='nav-link-accountList']");
+		registro.extracaoEmail();
+		dsl.clicar("//*[@id='continue']");
+		registro.extracaoSenha();
+		dsl.clicar("//*[@id='signInSubmit']");
+
 		if (getDriver().getTitle().isEmpty()) {
 			Assert.assertEquals("Amazon.com.br | Tudo pra você, de A a Z.", getDriver().getTitle());
 			Assert.assertEquals("Acessar Amazon", getDriver().getTitle());
@@ -45,7 +49,7 @@ public class ApresentacaoPage {
 
 	}
 
-//teste 02
+	// teste 02
 	public String deslogar() {
 
 		dsl.path("//*[@id='nav-link-accountList']");
@@ -57,35 +61,41 @@ public class ApresentacaoPage {
 	}
 
 	// teste 3
-	public void validaBike() {
-	
-		Assert.assertTrue("Bicicleta", dsl.validarTrue("//*[contains(text(),'Bicicleta')]", "Bicicleta"));
+	public void consultaBike() {
 
+		registro.extracaoTres();
+		dsl.clicarSimples();
+		Assert.assertTrue("Bicicleta", dsl.validarTrue("//*[contains(text(),'Bicicleta')]", "Bicicleta"));
 	}
 
 	// test 4
-	public void consultaAlgo(String texto) {
-
-		dsl.escrever("//*[@id='twotabsearchtextbox']", texto);
-		dsl.clicar("//*[@id='nav-search-submit-button']");
+	public void consultaAlgo() {
+		registro.estracaoQuatro();
+		dsl.clicarSimples();
 
 		Assert.assertTrue("Nenhum resultado para",
 				dsl.validarTrue("//*[contains(text(),'Nenhum resultado para ')]", "Nenhum resultado para"));
 	}
 
 	// teste 5
-	public void cepTrue(String texto, String cep) {
+	public void cepTrue() {
 
-		dsl.escrever("//*[@id='twotabsearchtextbox']", texto);
-		dsl.clicar("//*[@id='nav-search-submit-button']");
-		dsl.clicar("//*[@data-index=\"2\"]//*[@class='a-size-base-plus a-color-base a-text-normal']");
+		registro.estracaoCinco();
+		dsl.clicarSimples();
+
+		dsl.clicar("//*[@data-index='2']//*[@class='a-size-base-plus a-color-base a-text-normal']");
+
+		dsl.encadeamento();
 		dsl.clicar("//*[@id='contextualIngressPtLabel_deliveryShortLine']");
-		dsl.escrever("//*[@id='GLUXZipUpdateInput_0']", cep);
+
+		dsl.time();
+		registro.estracaoEncadeamento();
+
 		dsl.jsScriptClick("//*[@id='GLUXZipUpdate']/span/input");
 
-		WebElement visivel = dsl.path("//*[@id='mir-layout-DELIVERY_BLOCK-slot-PRIMARY_DELIVERY_MESSAGE_LARGE']");
-		assertNotNull(visivel);
-		System.out.println(visivel.getText());
+		Assert.assertTrue("06010067‌", dsl.validarTrue("//*[@id='contextualIngressPtLabel_deliveryShortLine']/span[2]", "06010067‌"));
+
+		
 
 	}
 
@@ -242,4 +252,5 @@ public class ApresentacaoPage {
 
 		}
 	}
+
 }

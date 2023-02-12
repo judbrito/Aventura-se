@@ -16,29 +16,65 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.UnexpectedTagNameException;
 
+import Planilha.Registro;
+
 @SuppressWarnings("unused")
 public class Metodos {
 
-	private static Metodos dsl;
+	private static Sheet planilha;
+	private Row linhas;
 	private Sheet sheet;
 
-
 	public WebElement clicar(String by) {
-		WebElement clicou = path(by);
+		WebElement clicou = getDriver().findElement(By.xpath(by));
 		clicou.click();
 		return clicou;
 	}
 
+	public WebElement clicarSimples() {
+		WebElement clicou = getDriver().findElement(By.xpath("//*[@id='nav-search-submit-button']"));
+		clicou.click();
+		return clicou;
+	}
 
+	public void setLinhas(Row linha10) {
+		this.linhas = linha10;
+	}
 
-	public void lerPaginasXls(String by, String xpath, int row, int cell) {
-		WebElement bike = dsl.path(by);
-		bike.sendKeys(sheet.getRow(row).getCell(cell).getStringCellValue());
-		dsl.clicar(xpath);
+	public void lerLogoff(String by, int row) {
+		WebElement email = getDriver().findElement(By.xpath(by));
+		email.sendKeys(linhas.getCell(row).getStringCellValue());
+		return;
+	}
+
+	public void lerParametro(int row) {
+		WebElement email = getDriver().findElement(By.xpath("//*[@id='twotabsearchtextbox']"));
+		email.sendKeys(linhas.getCell(row).getStringCellValue());
+		return;
+	}
+
+	public void lerParametroEncadeado(int row) {
+		WebElement testeCinco = getDriver().findElement(By.xpath("//*[@id='GLUXZipUpdateInput_0']"));
+		testeCinco.sendKeys(String.valueOf(linhas.getCell(row).getStringCellValue()));
+		time();
+		return;
+	}
+
+	public void encadeamento() {
+		apagarImput();
+
+	}
+
+	public void apagarImput() {
+		WebElement clicou = getDriver().findElement(By.xpath("//*[@id='twotabsearchtextbox']"));
+		clicou.clear();
+		WebElement clicado = getDriver().findElement(By.xpath("//*[@id='twotabsearchtextbox']"));
+		clicado.sendKeys(Keys.TAB);
 
 	}
 

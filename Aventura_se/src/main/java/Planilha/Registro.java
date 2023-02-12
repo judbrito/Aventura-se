@@ -9,48 +9,107 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-import org.openqa.selenium.WebElement;
 
 import DSL.Metodos;
 
 public class Registro {
 
-	private static Sheet planilha = initPlanilha();
-	private static Metodos dsl = new Metodos();
+	private Sheet planilha;
+	Metodos testandoEstancia = new Metodos();
+	private Metodos dsl;
 
-	private static Sheet initPlanilha() {
+	public Registro() {
+		new Metodos();
+		this.inicializarPlanilha();
+
+	}
+
+	public void inicializarPlanilha() {
 		try {
 			String file = System.getProperty("user.dir") + "./src/main/resources/evidencia1.xlsx";
 			FileInputStream fis = new FileInputStream(new File(file));
 			Workbook arquivo = WorkbookFactory.create(fis);
-			return arquivo.getSheetAt(0);
+			this.planilha = arquivo.getSheetAt(0);
+
 		} catch (EncryptedDocumentException | IOException e) {
 			e.printStackTrace();
-			return null;
 		}
 	}
 
-	public void extracaoEmail() throws IOException {
+	public void extracaoEmail() {
+		Row linhas = planilha.getRow(1);
+		linhas.getCell(1);
 		try {
-			Row linhas = planilha.getRow(1);
+			testandoEstancia.setLinhas(linhas);
+			testandoEstancia.lerLogoff("//*[@id='ap_email']", 1);
 
-			WebElement email = dsl.path("//*[@id='ap_email']");
-			email.sendKeys(linhas.getCell(1).getStringCellValue());
 		} catch (EncryptedDocumentException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public static void extracaoSenha() {
+	public void extracaoSenha() {
+
+		Row linhas = planilha.getRow(1);
+		linhas.getCell(1);
+
 		try {
-			if (planilha == null) {
-				throw new Exception("A planilha não foi inicializada.");
-			}
-			Row linhas = planilha.getRow(1);
-			WebElement senha = dsl.path("//*[@id='ap_password']");
-			senha.sendKeys(linhas.getCell(2).getStringCellValue());
+			testandoEstancia.setLinhas(linhas);
+			testandoEstancia.lerLogoff("//*[@id='ap_password']", 2);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
+	public void extracaoTres() {
+		try {
+			Row linhas = planilha.getRow(3);
+			testandoEstancia.setLinhas(linhas);
+			testandoEstancia.lerParametro(1);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void estracaoQuatro() {
+		try {
+			Row linhas = planilha.getRow(4);
+
+			testandoEstancia.setLinhas(linhas);
+			testandoEstancia.lerParametro(1);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void estracaoCinco() {
+		try {
+			Row linhas = planilha.getRow(5);
+
+			testandoEstancia.setLinhas(linhas);
+			testandoEstancia.lerParametro(1);
+			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void estracaoEncadeamento() {	
+			
+			testandoEstancia.lerParametroEncadeado(2);
+
+	}
 }
+
+//			testandoEstancia.lerDoisParametros(null, 1, 2)//5
+//		
+//			testandoEstancia.lerDoisParametros(null, 0, 0)//6
+//			testandoEstancia.lerExcel7("//*[@id='twotabsearchtextbox']", 7);
+//			testandoEstancia.lerDoisParametros(null, 0, 0)//9
+//			testandoEstancia.lerExcel10("//*[@id='twotabsearchtextbox']", 10);
+//			testandoEstancia.lerDoisParametros(null, 0, 0)//11
+//			testandoEstancia.lerExcel2("//*[@id='twotabsearchtextbox']", 12);
