@@ -28,7 +28,7 @@ public class Apresentacao {
 	@AfterClass
 	public static void fechar() {
 
-	//	killDriver();
+		// killDriver();
 	}
 
 	@Test
@@ -63,9 +63,8 @@ public class Apresentacao {
 	 * de ao menos um item no catálogo de resultados de itens.
 	 */
 	public void c_Id_0003() {
-		
+
 		page.consultaBike();
-	
 
 	}
 
@@ -89,6 +88,7 @@ public class Apresentacao {
 	 */
 
 	public void e_Id_0005() {
+
 		page.cepTrue();
 
 	}
@@ -102,7 +102,8 @@ public class Apresentacao {
 	 */
 
 	public void f_Id_0006() {
-		page.cepFalse("copo", "00000000");
+
+		page.cepFalse();
 
 	}
 
@@ -114,19 +115,19 @@ public class Apresentacao {
 	 * se o mesmo item é apresentado.
 	 */
 	public void g_Id_0007() {
+
 		page.inserePedido();
 
 	}
 
 	@Test
-	/*
-	 * 8. Aumentar a quantidade de um item no(a) carrinho/cesta  ID: 0008 
+	/* 8. Aumentar a quantidade de um item no(a) carrinho/cesta  ID: 0008 
 	 * Descrição: Realizar o descritivo do cenário de ID 0007, selecionar/aumentar a
-	 * qua
+	 * quantidade do item para dois e validar se o preço foi atualizado/dobrado.
 	 */
 
 	public void h_Id_0008() {
-		g_Id_0007();
+	
 		page.AddItens();
 
 	}

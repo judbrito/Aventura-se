@@ -16,7 +16,7 @@ public class Registro {
 
 	private Sheet planilha;
 	Metodos testandoEstancia = new Metodos();
-	private Metodos dsl;
+	public static Metodos dsl;
 
 	public Registro() {
 		new Metodos();
@@ -73,7 +73,7 @@ public class Registro {
 		}
 	}
 
-	public void estracaoQuatro() {
+	public void extracaoQuatro() {
 		try {
 			Row linhas = planilha.getRow(4);
 
@@ -85,31 +85,64 @@ public class Registro {
 		}
 	}
 
-	public void estracaoCinco() {
+	public void extracaoCinco() {
 		try {
 			Row linhas = planilha.getRow(5);
 
 			testandoEstancia.setLinhas(linhas);
 			testandoEstancia.lerParametro(1);
-			
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void extracaoEncadeamento() {
+
+		testandoEstancia.lerParametroEncadeado(2);
+
+	}
+
+	public void extracaoSeis() {
+		try {
+			Row linhas = planilha.getRow(6);
+
+			testandoEstancia.setLinhas(linhas);
+			testandoEstancia.lerParametro(1);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void estracaoEncadeamento() {	
-			
-			testandoEstancia.lerParametroEncadeado(2);
+	public void extracaoEncadeamentoSeis() {
+
+		testandoEstancia.lerParametroEncadeado(2);
 
 	}
-}
 
-//			testandoEstancia.lerDoisParametros(null, 1, 2)//5
-//		
-//			testandoEstancia.lerDoisParametros(null, 0, 0)//6
-//			testandoEstancia.lerExcel7("//*[@id='twotabsearchtextbox']", 7);
-//			testandoEstancia.lerDoisParametros(null, 0, 0)//9
-//			testandoEstancia.lerExcel10("//*[@id='twotabsearchtextbox']", 10);
-//			testandoEstancia.lerDoisParametros(null, 0, 0)//11
-//			testandoEstancia.lerExcel2("//*[@id='twotabsearchtextbox']", 12);
+	public void extracaoSete() {
+		try {
+			Row linhas = planilha.getRow(7);
+
+			testandoEstancia.setLinhas(linhas);
+			testandoEstancia.lerParametro(1);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void extracaoOito() {
+		try {
+			Row linhas = planilha.getRow(8);
+
+			testandoEstancia.setLinhas(linhas);
+			testandoEstancia.lerParametro(1);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

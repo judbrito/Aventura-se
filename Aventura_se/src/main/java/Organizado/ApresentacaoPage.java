@@ -70,7 +70,7 @@ public class ApresentacaoPage {
 
 	// test 4
 	public void consultaAlgo() {
-		registro.estracaoQuatro();
+		registro.extracaoQuatro();
 		dsl.clicarSimples();
 
 		Assert.assertTrue("Nenhum resultado para",
@@ -80,7 +80,7 @@ public class ApresentacaoPage {
 	// teste 5
 	public void cepTrue() {
 
-		registro.estracaoCinco();
+		registro.extracaoCinco();
 		dsl.clicarSimples();
 
 		dsl.clicar("//*[@data-index='2']//*[@class='a-size-base-plus a-color-base a-text-normal']");
@@ -89,28 +89,38 @@ public class ApresentacaoPage {
 		dsl.clicar("//*[@id='contextualIngressPtLabel_deliveryShortLine']");
 
 		dsl.time();
-		registro.estracaoEncadeamento();
+		registro.extracaoEncadeamento();
 
 		dsl.jsScriptClick("//*[@id='GLUXZipUpdate']/span/input");
 
 		Assert.assertTrue("06010067‌", dsl.validarTrue("//*[@id='contextualIngressPtLabel_deliveryShortLine']/span[2]", "06010067‌"));
 
-		
+		WebElement visivel = dsl.path("//*[@id='mir-layout-DELIVERY_BLOCK-slot-PRIMARY_DELIVERY_MESSAGE_LARGE']");
+		assertNotNull(visivel);
+		System.out.println(visivel.getText());
 
 	}
 
 	// teste 6
-	public void cepFalse(String texto, String cep) {
+	public void cepFalse() {
 
-		dsl.escrever("//*[@id='twotabsearchtextbox']", texto);
-		dsl.clicar("//*[@id='nav-search-submit-button']");
-		dsl.clicar("//*[@data-index='2']//h2//span");
+
+		registro.extracaoSeis();
+		dsl.clicarSimples();
+
+		dsl.clicar("//*[@data-index='2']//*[@class='a-size-base-plus a-color-base a-text-normal']");
+
+		dsl.encadeamento();
 		dsl.clicar("//*[@id='contextualIngressPtLabel_deliveryShortLine']");
-		dsl.escrever("//*[@id='GLUXZipUpdateInput_0']", cep);
-		dsl.jsScriptClick("//*[@id='GLUXZipUpdate-announce']");
+
+		dsl.time();
+		registro.extracaoEncadeamento();
+
+		dsl.jsScriptClick("//*[@id='GLUXZipUpdate']/span/input");
 
 		WebElement visivel = dsl.path("//*[@id='GLUXZipError']/div/div/div");
 		System.out.println(visivel.getText());
+		
 		assertFalse("Insira um CEP válido",
 				dsl.validarTrue("//*[@id='GLUXZipError']/div/div/div", "Insira um CEP válido"));
 
@@ -118,8 +128,8 @@ public class ApresentacaoPage {
 
 	// teste 7
 	public void inserePedido() {
-		dsl.escrever("//*[@id='twotabsearchtextbox']", "console games lançamentos");
-		dsl.clicar("//*[@id='nav-search-submit-button']");
+		registro.extracaoSete();
+		dsl.clicarSimples();
 		dsl.clicar("//*[@data-index='1']//*[contains(text(),'Console')]");
 		dsl.clicar("//*[@id='add-to-cart-button']");
 		dsl.clicar("//*[@id='nav-cart']");
@@ -131,7 +141,12 @@ public class ApresentacaoPage {
 	// test 8
 
 	public void AddItens() {
-
+		registro.extracaoOito();
+		dsl.clicarSimples();
+		dsl.clicar("//*[@data-index='1']//*[contains(text(),'Console')]");
+		dsl.clicar("//*[@id='add-to-cart-button']");
+		dsl.clicar("//*[@id='nav-cart']");
+		
 		WebElement custo = dsl.path("//span[@id='sc-subtotal-amount-buybox']/span");
 
 		String umItem = custo.getText();
@@ -140,7 +155,7 @@ public class ApresentacaoPage {
 		WebElement element = dsl.path("//*[@id='quantity']");
 		Select itens = new Select(element);
 		itens.selectByValue("2");
-		dsl.time();
+	
 
 	}
 
