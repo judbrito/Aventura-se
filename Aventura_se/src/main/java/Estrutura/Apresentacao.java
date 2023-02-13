@@ -2,33 +2,39 @@ package Estrutura;
 
 import static Webdriver.DriverFactory.killDriver;
 
+import java.io.IOException;
+
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TestName;
 import org.junit.runners.MethodSorters;
+import org.openqa.selenium.TakesScreenshot;
 
+import Imagens.ScreenShotsTest;
 import Ordenacao.PaginaUnica;
 import Organizado.ApresentacaoPage;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Apresentacao {
-
 	private ApresentacaoPage page;
-
+	@Rule
+	public TestName testeNames = new TestName();
 	@Before
 
 	public void abrir() throws Exception {
-
+		
 		PaginaUnica.abrirUnico();
 		page = new ApresentacaoPage();
 
 	}
 
 	@AfterClass
-	public static void fechar() {
-
-		// killDriver();
+	public static void fechar() throws IOException {
+		ScreenShotsTest.capturaTelas();
+		//killDriver();
 	}
 
 	@Test
@@ -51,7 +57,8 @@ public class Apresentacao {
 	 */
 
 	public void b_Id_0002() {
-		page.logar();
+	
+
 		page.deslogar();
 
 	}
@@ -121,13 +128,14 @@ public class Apresentacao {
 	}
 
 	@Test
-	/* 8. Aumentar a quantidade de um item no(a) carrinho/cesta  ID: 0008 
+	/*
+	 * 8. Aumentar a quantidade de um item no(a) carrinho/cesta  ID: 0008 
 	 * Descrição: Realizar o descritivo do cenário de ID 0007, selecionar/aumentar a
 	 * quantidade do item para dois e validar se o preço foi atualizado/dobrado.
 	 */
 
 	public void h_Id_0008() {
-	
+
 		page.AddItens();
 
 	}
@@ -142,6 +150,7 @@ public class Apresentacao {
 
 	public void i_Id_0009() {
 		page.doisItens();
+	
 	}
 
 	@Test
@@ -153,7 +162,7 @@ public class Apresentacao {
 	 */
 
 	public void j_Id_0010() {
-		g_Id_0007();
+
 		page.excluiItens();
 
 	}
@@ -225,4 +234,5 @@ public class Apresentacao {
 		page.organizar();
 
 	}
+
 }

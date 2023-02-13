@@ -17,8 +17,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.UnexpectedTagNameException;
 
 import Planilha.Registro;
@@ -30,10 +32,11 @@ public class Metodos {
 	private Row linhas;
 	private Sheet sheet;
 
-	public WebElement clicar(String by) {
+	public String clicar(String by) {
 		WebElement clicou = getDriver().findElement(By.xpath(by));
 		clicou.click();
-		return clicou;
+		return by;
+
 	}
 
 	public WebElement clicarSimples() {
@@ -59,30 +62,24 @@ public class Metodos {
 	}
 
 	public void lerParametroEncadeado(int row) {
-		WebElement testeCinco = getDriver().findElement(By.xpath("//*[@id='GLUXZipUpdateInput_0']"));
-		testeCinco.sendKeys(String.valueOf(linhas.getCell(row).getStringCellValue()));
-		time();
+		try {
+			WebElement testeCinco = getDriver().findElement(By.xpath("//*[@id='GLUXZipUpdateInput_0']"));
+			testeCinco.sendKeys(String.valueOf(linhas.getCell(row).getStringCellValue()));
+		} catch (NoSuchElementException e) {
+		}
 		return;
 	}
 
 	public void encadeamento() {
-		apagarImput();
+		apagarInput();
 
 	}
 
-	public void apagarImput() {
+	public void apagarInput() {
 		WebElement clicou = getDriver().findElement(By.xpath("//*[@id='twotabsearchtextbox']"));
 		clicou.clear();
 		WebElement clicado = getDriver().findElement(By.xpath("//*[@id='twotabsearchtextbox']"));
 		clicado.sendKeys(Keys.TAB);
-
-	}
-
-	public String escrever(String by, String texto) {
-		String xpath = "//*[@id='nav-link-accountList-nav-line-1']";
-		WebElement element = getDriver().findElement(By.xpath(by));
-		getDriver().findElement(By.xpath(by)).sendKeys(texto);
-		return xpath;
 
 	}
 
@@ -92,10 +89,17 @@ public class Metodos {
 
 	}
 
+	public void itensCarrinho() {
+		WebElement element = path("//*[@id='quantity']");
+		Select itens = new Select(element);
+		itens.selectByValue("0");
+	}
+
 	public void zerarCarrinho() {
 		getDriver().get("https://www.amazon.com.br/gp/cart/view.html?ref_=sw_gtc");
 		for (int i = 0; i < 2; i++) {
 			jsScriptClick("//*[@value='Excluir']");
+
 		}
 	}
 
@@ -139,10 +143,8 @@ public class Metodos {
 		try {
 			getDriver().get("https://www.amazon.com.br");
 		} catch (Exception e) {
-
 			if (e instanceof UnexpectedTagNameException) {
-
-				getDriver().close();
+				getDriver().quit();
 			} else {
 
 				throw e;

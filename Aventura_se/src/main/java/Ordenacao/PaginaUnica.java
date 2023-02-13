@@ -16,11 +16,10 @@ public class PaginaUnica {
 	public static boolean fechaWeb = false;
 
 	public static void abrirUnico() throws Exception {
-		getDriver().get("https://www.amazon.com.br");
+		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 		getDriver().manage().window().maximize();
 		dsl = new Metodos();
 		dsl.inesperado();
-		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		page = new ApresentacaoPage();
 		
 	}

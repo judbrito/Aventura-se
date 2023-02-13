@@ -15,7 +15,7 @@ import DSL.Metodos;
 public class Registro {
 
 	private Sheet planilha;
-	Metodos testandoEstancia = new Metodos();
+	Metodos testandoInstancia = new Metodos();
 	public static Metodos dsl;
 
 	public Registro() {
@@ -36,61 +36,62 @@ public class Registro {
 		}
 	}
 
-	public void extracaoEmail() {
+	public void extrairEmail() {
 		Row linhas = planilha.getRow(1);
 		linhas.getCell(1);
 		try {
-			testandoEstancia.setLinhas(linhas);
-			testandoEstancia.lerLogoff("//*[@id='ap_email']", 1);
-
-		} catch (EncryptedDocumentException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void extracaoSenha() {
-
-		Row linhas = planilha.getRow(1);
-		linhas.getCell(1);
-
-		try {
-			testandoEstancia.setLinhas(linhas);
-			testandoEstancia.lerLogoff("//*[@id='ap_password']", 2);
+			testandoInstancia.setLinhas(linhas);
+			testandoInstancia.lerLogoff("//*[@id='ap_email']", 1);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void extracaoTres() {
+	public void extrairSenha() {
+		try {
+			Row linhas = planilha.getRow(1);
+			linhas.getCell(1);
+
+			testandoInstancia.setLinhas(linhas);
+			testandoInstancia.lerLogoff("//*[@id='ap_password']", 2);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+
+	public void extrairTres() {
 		try {
 			Row linhas = planilha.getRow(3);
-			testandoEstancia.setLinhas(linhas);
-			testandoEstancia.lerParametro(1);
+			testandoInstancia.setLinhas(linhas);
+			testandoInstancia.lerParametro(1);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void extracaoQuatro() {
+	public void extrairQuatro() {
 		try {
 			Row linhas = planilha.getRow(4);
 
-			testandoEstancia.setLinhas(linhas);
-			testandoEstancia.lerParametro(1);
+			testandoInstancia.setLinhas(linhas);
+			testandoInstancia.lerParametro(1);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void extracaoCinco() {
+	public void extrairCinco() {
 		try {
 			Row linhas = planilha.getRow(5);
 
-			testandoEstancia.setLinhas(linhas);
-			testandoEstancia.lerParametro(1);
+			testandoInstancia.setLinhas(linhas);
+			testandoInstancia.lerParametro(1);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,51 +99,99 @@ public class Registro {
 
 	}
 
-	public void extracaoEncadeamento() {
+	public void extrairEncadeamento() {
 
-		testandoEstancia.lerParametroEncadeado(2);
+		testandoInstancia.lerParametroEncadeado(2);
 
 	}
 
-	public void extracaoSeis() {
+	public void extrairSeis() {
 		try {
 			Row linhas = planilha.getRow(6);
 
-			testandoEstancia.setLinhas(linhas);
-			testandoEstancia.lerParametro(1);
+			testandoInstancia.setLinhas(linhas);
+			testandoInstancia.lerParametro(1);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void extracaoEncadeamentoSeis() {
+	public void extrairEncadeamentoSeis() {
 
-		testandoEstancia.lerParametroEncadeado(2);
+		testandoInstancia.lerParametroEncadeado(2);
 
 	}
 
-	public void extracaoSete() {
+	public void extrairSete() {
 		try {
 			Row linhas = planilha.getRow(7);
 
-			testandoEstancia.setLinhas(linhas);
-			testandoEstancia.lerParametro(1);
+			testandoInstancia.setLinhas(linhas);
+			testandoInstancia.lerParametro(1);
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void extracaoOito() {
+	public void extrairOito() {
 		try {
 			Row linhas = planilha.getRow(8);
 
-			testandoEstancia.setLinhas(linhas);
-			testandoEstancia.lerParametro(1);
-			
+			testandoInstancia.setLinhas(linhas);
+			testandoInstancia.lerParametro(1);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+
+	public void extrairNove() {
+		try {
+			Row linhas = planilha.getRow(9);
+
+			testandoInstancia.setLinhas(linhas);
+			testandoInstancia.lerParametro(1);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void encadeamento() {
+		try {
+
+			testandoInstancia.lerParametro(2);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void extrairDez() {
+		try {
+			Row linhas = planilha.getRow(10);
+
+			testandoInstancia.setLinhas(linhas);
+			testandoInstancia.lerParametro(1);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void extrairDoze() {
+		try {
+			Row linhas = planilha.getRow(12);
+
+			testandoInstancia.setLinhas(linhas);
+			testandoInstancia.lerParametro(1);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }
