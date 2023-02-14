@@ -1,28 +1,38 @@
-package Imagens;
+package Telas;
 
 import static Webdriver.DriverFactory.getDriver;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.rules.TestName;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 public class ScreenShotsTest {
-	
-	public static TestName testeNames = new TestName();
 
+	@SuppressWarnings("unused")
+	private static String nomeTeste;
 
+	@SuppressWarnings("unused")
+	public static void capturaTelas() {
+		try {
 
-	public static void capturaTelas() throws IOException {
-		TakesScreenshot imagens = (TakesScreenshot) getDriver();
-		File arquivo = imagens.getScreenshotAs(OutputType.FILE);
-		File destino = new File(testeNames.getMethodName() + "_"
-				+ new SimpleDateFormat("dd-MM-yyyy_HH-mm-ss").format(new Date()) + ".png");
-		FileUtils.copyFile(arquivo, destino);
+			SimpleDateFormat formatter = new SimpleDateFormat("_dd_MM_yyyy_HH_mm_ss");
+			Date date = new Date();
+
+			String nomeArquivo = formatter.format(date);
+			String diretorio = ".//src//main//resources//imagens//";
+
+			TakesScreenshot screenshot = (TakesScreenshot) getDriver();
+
+			File source = screenshot.getScreenshotAs(OutputType.FILE);
+			File destino = new File(diretorio + nomeArquivo + ".png");
+			FileUtils.copyFile(source, destino);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }

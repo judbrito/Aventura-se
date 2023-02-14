@@ -105,7 +105,7 @@ public class Metodos {
 
 	public void time() {
 		((JavascriptExecutor) getDriver())
-				.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 700);");
+				.executeAsyncScript("window.setTimeout(arguments[arguments.length - 1], 500);");
 	}
 
 	public boolean validarTrue(String by, String texto) {
@@ -115,11 +115,6 @@ public class Metodos {
 
 	public WebElement path(String by) {
 		return getDriver().findElement(By.xpath(by));
-	}
-
-	@SuppressWarnings("unchecked")
-	public List<WebElement> ListElemento(String by) {
-		return (List<WebElement>) getDriver().findElement(By.xpath(by));
 	}
 
 	public void visivel(String by) {
@@ -145,11 +140,10 @@ public class Metodos {
 		} catch (Exception e) {
 			if (e instanceof UnexpectedTagNameException) {
 				getDriver().quit();
+				throw new Exception("Driver encerrado.");
 			} else {
-
 				throw e;
 			}
 		}
-
 	}
 }

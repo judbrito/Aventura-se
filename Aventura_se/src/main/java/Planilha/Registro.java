@@ -26,7 +26,7 @@ public class Registro {
 
 	public void inicializarPlanilha() {
 		try {
-			String file = System.getProperty("user.dir") + "./src/main/resources/evidencia1.xlsx";
+			String file = System.getProperty("user.dir") + "./src/main/resources/evidencia.xlsx";
 			FileInputStream fis = new FileInputStream(new File(file));
 			Workbook arquivo = WorkbookFactory.create(fis);
 			this.planilha = arquivo.getSheetAt(0);
@@ -60,8 +60,6 @@ public class Registro {
 			e.printStackTrace();
 		}
 	}
-	
-	
 
 	public void extrairTres() {
 		try {

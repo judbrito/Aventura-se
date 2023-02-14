@@ -1,6 +1,7 @@
 package Organizado;
 
 import static Webdriver.DriverFactory.getDriver;
+import static Webdriver.DriverFactory.killDriver;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
@@ -11,11 +12,13 @@ import java.util.List;
 import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.junit.Assert;
+import org.junit.Test;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 
 import DSL.Metodos;
 import Planilha.Registro;
+import Telas.ScreenShotsTest;
 import Webdriver.DriverFactory;
 import Planilha.Registro;
 
@@ -31,6 +34,11 @@ public class ApresentacaoPage {
 		new Metodos();
 	}
 
+	@Test
+	public void fechar() throws IOException {
+
+	
+	}
 	// teste 01
 
 	public void logar() {
@@ -55,7 +63,7 @@ public class ApresentacaoPage {
 
 	// teste 02
 	public void deslogar() {
-
+		logar();
 		dsl.jsScriptClick("//*[@id='nav-item-signout']/span");
 
 		Assert.assertTrue("Fazer login",
@@ -164,7 +172,7 @@ public class ApresentacaoPage {
 	// test 9
 	public void doisItens() {
 
-		// foga
+		// fogão
 		registro.extrairNove();
 		dsl.clicarSimples();
 		dsl.clicar("//*[@class='a-link-normal s-underline-text s-underline-link-text "
@@ -172,7 +180,7 @@ public class ApresentacaoPage {
 		dsl.clicar("//*[@id='add-to-cart-button']");
 		dsl.propaganda();
 		dsl.apagarInput();
-		// gela
+		// geladeira
 
 		registro.encadeamento();
 		dsl.clicarSimples();
@@ -186,7 +194,6 @@ public class ApresentacaoPage {
 		dsl.itensCarrinho();
 	}
 
-	
 	// test 10
 
 	public void excluiItens() {
@@ -205,7 +212,7 @@ public class ApresentacaoPage {
 
 		Assert.assertTrue("foi removido de Carrinho de compras.", dsl.validarTrue(
 				"//*[text()='foi removido de Carrinho de compras.']", "foi removido de Carrinho de compras."));
-		dsl.zerarCarrinho();
+
 	}
 
 	// test 11
@@ -249,9 +256,8 @@ public class ApresentacaoPage {
 		dsl.jsScriptClick("//*[@class='hmenu-item']//*[contains(text(),'Computadores e Informática')]");
 		dsl.clicar("//*[@id='hmenu-close-menu']/../..//*[contains(text(),'Notebooks')]");
 
-		dsl.visivel("//*[@class='a-section octopus-pc-asin-title-review-section']" 
-		+ "//*[contains(text(),'Note')]");
-		
+		dsl.visivel("//*[@class='a-section octopus-pc-asin-title-review-section']" + "//*[contains(text(),'Note')]");
+
 		Assert.assertTrue("Notebook", dsl.validarTrue("//*[@class='a-size-base a-color-base']", "Notebook"));
 	}
 
@@ -271,10 +277,8 @@ public class ApresentacaoPage {
 		Select itens = new Select(element);
 		itens.selectByVisibleText("Preço: alto a baixo");
 		dsl.time();
-		WebElement menorPreco = dsl.path("//a[@class='a-size-base a-link-normal "
-				+ "s-underline-text s-underline-link-text s-link-style a-text-normal']//*[contains(text(),'88')]");
-		WebElement maiorPreco = dsl.path("//a[@class='a-size-base a-link-normal s-underline-text "
-				+ "s-underline-link-text s-link-style a-text-normal']//*[contains(text(),'94')]");
+		WebElement menorPreco = dsl.path("//*[contains(text(),'Mais')]//..//.." + "/../..//*[contains(text(),'até')]");
+		WebElement maiorPreco = dsl.path("//*[contains(text(),'WUXGA')]//..//.." + "/../..//*[contains(text(),'até')]");
 		List<WebElement> lista = new ArrayList<WebElement>();
 		lista.add(maiorPreco);
 		for (int i = 0; i < lista.size(); i++) {
@@ -282,7 +286,6 @@ public class ApresentacaoPage {
 				lista.get(i).getText();
 			}
 			Assert.assertTrue(maiorPreco != menorPreco);
-			System.out.println("Valor mais alto cobrado: " + maiorPreco.getText());
 
 		}
 	}

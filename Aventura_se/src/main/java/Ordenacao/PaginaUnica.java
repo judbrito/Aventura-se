@@ -9,7 +9,9 @@ import Organizado.ApresentacaoPage;
 
 public class PaginaUnica {
 
-	private static Metodos dsl;
+
+	private static Metodos dsl = new Metodos();
+	
 	@SuppressWarnings("unused")
 	private static ApresentacaoPage page;
 
@@ -17,11 +19,11 @@ public class PaginaUnica {
 
 	public static void abrirUnico() throws Exception {
 		getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-		getDriver().manage().window().maximize();
-		dsl = new Metodos();
 		dsl.inesperado();
-		page = new ApresentacaoPage();
+		getDriver().manage().window().maximize();
 		
+		page = new ApresentacaoPage();
+
 	}
 
 }

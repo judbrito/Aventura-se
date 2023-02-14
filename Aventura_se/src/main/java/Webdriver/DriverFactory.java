@@ -7,13 +7,10 @@ public class DriverFactory {
 
 	private static WebDriver driver;
 
-
-
-	
 	public static WebDriver getDriver() {
-		
+
 		if (driver == null) {
-			driver = new ChromeDriver();			
+			driver = new ChromeDriver();
 			driver.manage().window().maximize();
 
 		}
@@ -21,7 +18,7 @@ public class DriverFactory {
 	}
 
 	public static void killDriver() {
-		
+
 		if (driver != null) {
 			driver.quit();
 			driver = null;

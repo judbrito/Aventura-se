@@ -4,41 +4,45 @@ import static Webdriver.DriverFactory.killDriver;
 
 import java.io.IOException;
 
-import org.junit.AfterClass;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.junit.runners.MethodSorters;
-import org.openqa.selenium.TakesScreenshot;
 
-import Imagens.ScreenShotsTest;
+import DSL.Metodos;
 import Ordenacao.PaginaUnica;
 import Organizado.ApresentacaoPage;
+import Telas.ScreenShotsTest;
 
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class Apresentacao {
+
 	private ApresentacaoPage page;
 	@Rule
 	public TestName testeNames = new TestName();
+	
+	Metodos dsl = new Metodos();
+
 	@Before
 
 	public void abrir() throws Exception {
-		
+
 		PaginaUnica.abrirUnico();
+		
 		page = new ApresentacaoPage();
 
 	}
 
-	@AfterClass
-	public static void fechar() throws IOException {
+	@After
+	public void fechar() throws IOException {
 		ScreenShotsTest.capturaTelas();
-		//killDriver();
+		killDriver();
 	}
 
 	@Test
-
 	/*
 	 * 1. Realizar login na aplicação Descrição: Realizar login na aplicação e
 	 * validar a página de destino esperada.
@@ -50,14 +54,12 @@ public class Apresentacao {
 	}
 
 	@Test
-
 	/*
 	 * 2. Realizar logout na aplicação  ID: 0002  Descrição: Realizar logout na
 	 * aplicação e validar a página de destino esperada.
 	 */
 
 	public void b_Id_0002() {
-	
 
 		page.deslogar();
 
@@ -150,7 +152,7 @@ public class Apresentacao {
 
 	public void i_Id_0009() {
 		page.doisItens();
-	
+
 	}
 
 	@Test
@@ -175,7 +177,7 @@ public class Apresentacao {
 	 * itens igual à um.
 	 */
 
-	public void l_Id_0011() {
+	public void k_Id_0011() {
 
 		i_Id_0009();
 
@@ -191,7 +193,7 @@ public class Apresentacao {
 	 * redirecionamento para a seção/página de login.
 	 */
 
-	public void m_Id_0012() {
+	public void l_Id_0012() {
 		page.voltaLogin();
 
 	}
@@ -204,7 +206,7 @@ public class Apresentacao {
 	 * exibição de ao menos um item no catálogo de resultados de itens.
 	 */
 
-	public void n_Id_0013() {
+	public void m_Id_0013() {
 		page.tecnologia();
 
 	}
@@ -217,8 +219,8 @@ public class Apresentacao {
 	 * resultados de itens contém em seu nome/descritivo a palavra (marca filtrada)
 	 * “Lenovo”.
 	 */
-	public void o_Id_0014() {
-		n_Id_0013();
+	public void n_Id_0014() {
+		m_Id_0013();
 		page.tecAlvo();
 	}
 
@@ -229,8 +231,8 @@ public class Apresentacao {
 	 * preços e validar no catálogo de resultados de itens se o valor do primeiro
 	 * item é maior do que o do segundo.
 	 */
-	public void p_Id_0015() {
-		o_Id_0014();
+	public void o_Id_0015() {
+		n_Id_0014();
 		page.organizar();
 
 	}
